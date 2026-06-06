@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { renderAll, data, DEFAULT_LANG } from '../lib/i18n';
+
+const lang = DEFAULT_LANG;
+const d = data[lang];
+const r = renderAll(lang);
+---
+
+<Base title={d.meta.title} description={d.meta.description} canonical="https://tareqjami.de/">
+  <nav slot="nav" class="nav" data-render="nav" set:html={r.nav}></nav>
+
+  <main id="main">
+    <section class="hero" data-render="hero" set:html={r.hero}></section>
+    <section id="about" class="section" data-render="about" set:html={r.about}></section>
+    <section id="experience" class="section" data-render="experience" set:html={r.experience}></section>
+    <section id="opensource" class="section" data-render="opensource" set:html={r.opensource}></section>
+    <section id="skills" class="section" data-render="skills" set:html={r.skills}></section>
+    <section id="education" class="section" data-render="education" set:html={r.education}></section>
+    <section id="contact" class="section" data-render="contact" set:html={r.contact}></section>
+  </main>
+
+  <script>
+    import { initControls, currentLang } from '../lib/ui';
+    import { renderAll, data } from '../lib/i18n';
+
+    const regions = [
+      'nav',
+      'hero',
+      'about',
+      'experience',
+      'opensource',
+      'skills',
+      'education',
+      'contact',
+    ] as const;
+
+    const desc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+
+    function applyContent(lang: 'en' | 'de') {
+      const html = renderAll(lang);
+      for (const region of regions) {
+        const el = document.querySelector(`[data-render="${region}"]`);
+        if (el) el.innerHTML = html[region];
+      }
+      // If the avatar image fails, drop it so the initials show through.
+      const avatar = document.querySelector<HTMLImageElement>('.avatar-img');
+      if (avatar) avatar.addEventListener('error', () => avatar.remove(), { once: true });
+      const d = data[lang];
+      document.title = d.meta.title;
+      if (desc) desc.content = d.meta.description;
+    }
+
+    document.addEventListener('langchange', (e) => {
+      applyContent((e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang);
+    });
+
+    // Contact form: submit to Netlify Forms via fetch (progressive enhancement).
+    // Without JS the form still POSTs normally and Netlify redirects to /success.
+    document.addEventListener('submit', async (e) => {
+      const form = e.target;
+      if (!(form instanceof HTMLFormElement) || form.getAttribute('name') !== 'contact') return;
+      e.preventDefault();
+      const f = data[currentLang()].contact.form;
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const show = (msg: string, cls: string) => {
+        if (!status) return;
+        status.hidden = false;
+        status.className = 'form-status' + (cls ? ' ' + cls : '');
+        status.textContent = msg;
+      };
+      if (btn) btn.disabled = true;
+      show(f.sending, '');
+      try {
+        const body = new URLSearchParams(new FormData(form) as any).toString();
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show(f.success, 'ok');
+      } catch (err) {
+        show(f.error, 'err');
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+
+    initControls(); // fires the initial `langchange`, rendering current language
+  </script>
+</Base>

@@ -1,0 +1,24 @@
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies / build
+node_modules/
+dist/
+.cache/
+
+# Astro
+.astro/
+.env
+.env.production
+
+# Netlify
+.netlify/
+
+# Local logs / Claude local settings
+*.log
+.claude/settings.local.json

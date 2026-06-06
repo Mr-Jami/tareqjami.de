@@ -1,0 +1,96 @@
+---
+// Self-hosted Inter (no Google Fonts CDN request) — GDPR-friendly.
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '../styles/global.css';
+import { data, DEFAULT_LANG } from '../lib/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+const { title, description, canonical = 'https://tareqjami.de/' } = Astro.props;
+const lang = DEFAULT_LANG;
+const d = data[lang];
+---
+
+<!doctype html>
+<html lang={lang} data-lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%8B%3C/text%3E%3C/svg%3E" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Tareq Jami" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <!-- Apply saved theme + language before paint to avoid flash -->
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', t);
+          var l = localStorage.getItem('lang');
+          if (l !== 'en' && l !== 'de') l = 'en';
+          document.documentElement.setAttribute('lang', l);
+          document.documentElement.setAttribute('data-lang', l);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+      <a href="/" class="brand">Tareq Jami</a>
+      <slot name="nav" />
+      <div class="controls">
+        <div class="seg" id="lang-seg" role="group" aria-label="Language / Sprache">
+          <button class="seg-opt" type="button" data-lang-opt="en" aria-label="Switch to English">EN</button>
+          <button class="seg-opt" type="button" data-lang-opt="de" aria-label="Auf Deutsch umschalten">DE</button>
+        </div>
+        <button
+          class="theme-switch"
+          id="theme-btn"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label={d.ui.themeToggleAria}>
+          <span class="ts-track" aria-hidden="true">
+            <span class="ts-knob"><span class="theme-icon"></span></span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <p>
+        © <span id="year"></span> Tareq Jami ·
+        <a href="/impressum"
+          ><span data-lang-block="en">Imprint</span><span data-lang-block="de"
+            >Impressum</span
+          ></a
+        > ·
+        <a href="/datenschutz"
+          ><span data-lang-block="en">Privacy</span><span data-lang-block="de"
+            >Datenschutz</span
+          ></a
+        > · <a href="#top">↑</a>
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Fallback page Netlify redirects to after a no-JS form submission.
+const title = 'Thank you — Tareq Jami';
+const description = 'Your message has been received.';
+---
+
+<Base title={title} description={description} canonical="https://tareqjami.de/success/">
+  <nav slot="nav" class="nav">
+    <a href="/" class="nav-link"
+      >← <span data-lang-block="en">Home</span><span data-lang-block="de">Start</span></a
+    >
+  </nav>
+
+  <main id="main">
+    <article class="legal" style="text-align: center;">
+      <div data-lang-block="en">
+        <h1>Thank you! 🎉</h1>
+        <p>Your message has been sent — I’ll get back to you soon.</p>
+        <p style="margin-top: 1.6rem;"><a class="btn btn-ghost" href="/">Back to home</a></p>
+      </div>
+      <div data-lang-block="de">
+        <h1>Vielen Dank! 🎉</h1>
+        <p>Deine Nachricht wurde gesendet – ich melde mich bald.</p>
+        <p style="margin-top: 1.6rem;"><a class="btn btn-ghost" href="/">Zurück zur Startseite</a></p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    import { initControls } from '../lib/ui';
+    initControls();
+  </script>
+</Base>

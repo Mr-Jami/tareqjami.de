@@ -1,0 +1,54 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# --- Domain canonicalization -------------------------------------------
+# Primary domain: tareqjami.de
+# All alias domains (and any www. host) 301-redirect to it.
+# force = true is required: the same site is served on every host, so the
+# requested path always "exists" in the deploy and the redirect would
+# otherwise be skipped.
+[[redirects]]
+  from = "https://www.tareqjami.de/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://tareqjami.com/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.tareqjami.com/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://jami.cc/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.jami.cc/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://jami-it.de/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.jami-it.de/*"
+  to = "https://tareqjami.de/:splat"
+  status = 301
+  force = true

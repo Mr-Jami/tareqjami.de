@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tareqjami.de/sitemap-index.xml
