@@ -143,7 +143,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Lead Frontend Engineer',
-            period: 'Feb 2026 – Present',
+            period: 'Mar 2026 – Present',
             bullets: [
               'Lead frontend architecture and set technical direction across internal tooling projects',
               'Mentor developers and establish frontend standards through code reviews and pair programming',
@@ -323,22 +323,23 @@ export const data: Record<Lang, SiteData> = {
         location: 'Prüm, Deutschland',
         roles: [
           {
-            title: 'Leitender Frontend-Entwickler',
-            period: 'Feb. 2026 – heute',
+            title: 'Lead Frontend Engineer',
+            period: 'März 2026 – heute',
             bullets: [
-              'Verantworte die Frontend-Architektur und setze die technische Ausrichtung über interne Tooling-Projekte hinweg',
-              'Mentoriere Entwickler und etabliere Frontend-Standards durch Code-Reviews und Pair-Programming',
-              'Modernisiere die Codebasis mit Angular Signals und einer reaktiven, wartbaren State-Architektur',
-              'Verantworte Planung und Priorisierung und verbessere die Developer Experience durch Tooling und CI-Pipelines',
+              'Leitung der Frontend-Architektur und Festlegung der technischen Ausrichtung über interne Tooling-Projekte hinweg',
+              'Mentoring von Entwicklern sowie Etablierung von Frontend-Standards durch Code-Reviews, Pair-Programming und Onboarding',
+              'Modernisierung der Codebasis mit Angular Signals und einer reaktiven, wartbaren State-Architektur',
+              'Verantwortung für Planung und Priorisierung bei gleichzeitiger Verbesserung der Developer Experience durch Tooling, CI-Pipelines und Build-Optimierung',
             ],
           },
           {
-            title: 'Softwareentwickler',
+            title: 'Software Engineer',
             period: 'Sept. 2024 – Feb. 2026',
             bullets: [
-              'Leitete die Digitalisierung interner Prozesse für Tesla Automation weltweit',
-              'Entwickelte Full-Stack-Lösungen inklusive Beratung zu Frontend- und Backend-Architektur',
-              'Führte Anforderungsanalysen durch und stimmte mich mit Stakeholdern ab',
+              'Digitalisierung firmeninterner Prozesse (Tesla Automation weltweit)',
+              'Frontend- und Backend-Entwicklung',
+              'Beratung zur Frontend-Architektur',
+              'Anforderungsanalyse und Abstimmung mit Stakeholdern und Endnutzern',
             ],
           },
         ],
@@ -362,12 +363,13 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Deutschland',
         roles: [
           {
-            title: 'Softwareentwickler – Leitender Frontend-Entwickler',
+            title: 'Software Engineer – Lead Frontend Developer',
             period: 'Sept. 2022 – Aug. 2024',
             bullets: [
-              'Leitete Frontend-Initiativen und traf Architekturentscheidungen',
-              'Entwickelte cloudbasierte Anwendungen mit modernen Technologien',
-              'Implementierte CI/CD-Pipelines und betreute mehrere Entwicklungsteams',
+              'Cloud-Entwicklung',
+              'Frontend- und Backend-Entwicklung',
+              'Bereitstellungsautomatisierung',
+              'Projektleitung und Planung',
             ],
           },
         ],
@@ -377,12 +379,13 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Deutschland',
         roles: [
           {
-            title: 'Full-Stack-Entwickler · Teilzeit',
+            title: 'Full Stack Developer · Teilzeit',
             period: 'Okt. 2021 – Okt. 2023',
             bullets: [
-              'Entwickelte Frontend-/Backend-Anwendungen mit Angular und .NET',
-              'Übernahm Systemadministration, Code-Reviews und Deployment-Automatisierung',
-              'Konfigurierte GitLab-CI-Pipelines und beriet zur Architektur',
+              'Frontend- und Backend-Entwicklung (Angular/.NET)',
+              'Systemadministration und Codeüberprüfung',
+              'GitLab-CI, Bereitstellungsautomatisierung, Serverkonfiguration',
+              'Beratung in der Softwarearchitektur',
             ],
           },
         ],
@@ -392,7 +395,7 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Deutschland',
         roles: [
           {
-            title: 'Full-Stack-Entwickler',
+            title: 'Full Stack Developer',
             period: 'Sept. 2020 – Aug. 2022',
             bullets: [
               'Entwickelte responsive Webanwendungen mit Angular, TypeScript und Node.js',
