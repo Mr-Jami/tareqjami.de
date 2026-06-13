@@ -1,0 +1,203 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// Smart app landing page for "Simple Shot Timer".
+//  - Android  → redirect straight to the Google Play listing.
+//  - iOS      → would redirect to a dedicated page, but that page does not
+//               exist yet, so the redirect is disabled (see IOS_URL below).
+//  - Anything else (desktop, etc.) → show the logo + store buttons.
+const title = 'Simple Shot Timer';
+const description =
+  'Simple Shot Timer — a focused interval / shot timer app. Get it on Google Play.';
+
+// Single source of truth for the store links, shared by the inline redirect
+// script and the visible buttons below.
+const PLAY_URL =
+  'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
+// Set this once the iOS landing page exists, then flip APP_STORE_ENABLED.
+const APP_STORE_URL = '';
+const APP_STORE_ENABLED = false;
+---
+
+<Base
+  title={title}
+  description={description}
+  canonical="https://tareqjami.de/apps/simpleshottimer/">
+  <nav slot="nav" class="nav">
+    <a href="/" class="nav-link"
+      >← <span data-lang-block="en">Home</span><span data-lang-block="de">Start</span></a
+    >
+  </nav>
+
+  <main id="main">
+    {/*
+      Runs synchronously while the document is parsed, so mobile visitors are
+      redirected before the fallback below ever paints. Kept inline (no module
+      import) precisely so it executes during parse, not after hydration.
+    */}
+    <script is:inline define:vars={{ PLAY_URL, APP_STORE_URL, APP_STORE_ENABLED }}>
+      (function () {
+        var ua = navigator.userAgent || '';
+        // Android → Google Play.
+        if (/android/i.test(ua)) {
+          location.replace(PLAY_URL);
+          return;
+        }
+        // iOS → dedicated page (disabled until it exists).
+        var isIOS =
+          /iPad|iPhone|iPod/.test(ua) ||
+          // iPadOS 13+ reports as desktop Safari but exposes touch points.
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (APP_STORE_ENABLED && APP_STORE_URL && isIOS) {
+          location.replace(APP_STORE_URL);
+          return;
+        }
+        // Everything else: fall through and render the page.
+      })();
+    </script>
+
+    <section class="app-landing">
+      <div class="app-icon" aria-hidden="true">
+        <img src="/apps/simpleshottimer/icon.png" alt="" width="120" height="120" />
+      </div>
+
+      <h1 class="app-name">Simple Shot Timer</h1>
+
+      <p class="app-tagline">
+        <span data-lang-block="en">Practical shot timer: par drills, splits, history &amp; CSV. No ads, no tracking.</span>
+        <span data-lang-block="de">Praktischer Shot-Timer: Par-Übungen, Splits, Verlauf &amp; CSV. Keine Werbung, kein Tracking.</span>
+      </p>
+
+      <div class="store-buttons">
+        {/* Official Google Play badge — used unmodified per the Google Play
+            badge guidelines. */}
+        <a
+          class="store-badge"
+          href={PLAY_URL}
+          target="_blank"
+          rel="noopener"
+          aria-label="Get Simple Shot Timer on Google Play">
+          <img
+            src="/apps/simpleshottimer/gplay-en.png"
+            alt="Get it on Google Play"
+            width="180"
+            height="70"
+          />
+        </a>
+
+        {/* App Store: neutral "coming soon" chip, not Apple's official badge —
+            the app is not listed on the App Store yet. */}
+        <span class="store-soon" aria-disabled="true">
+          <svg viewBox="0 0 384 512" width="20" height="20" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
+            ></path>
+          </svg>
+          <span class="store-soon-text">
+            <strong>App Store</strong>
+            <small data-lang-block="en">Coming soon</small>
+            <small data-lang-block="de">Demnächst</small>
+          </span>
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .app-landing {
+      max-width: 520px;
+      margin: clamp(2.5rem, 8vh, 5rem) auto;
+      padding: 0 1.25rem;
+      text-align: center;
+    }
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 26%;
+      background: #000;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .app-icon img {
+      width: 76%;
+      height: 76%;
+      object-fit: contain;
+    }
+    .app-name {
+      font-size: clamp(1.7rem, 5vw, 2.2rem);
+      margin-bottom: 0.6rem;
+    }
+    .app-tagline {
+      color: var(--muted);
+      margin: 0 auto 2rem;
+      max-width: 36ch;
+    }
+    .store-buttons {
+      display: flex;
+      gap: 0.85rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    /* Official badge: keep aspect ratio, do not recolor or distort. */
+    .store-badge {
+      display: inline-flex;
+      transition: transform 0.1s ease;
+    }
+    .store-badge:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+    .store-badge img {
+      height: 56px;
+      width: auto;
+      display: block;
+    }
+    /* Neutral placeholder until the App Store listing exists. */
+    .store-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 1rem;
+      border-radius: 12px;
+      background: var(--bg-card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+    }
+    .store-soon-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      text-align: left;
+    }
+    .store-soon-text strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .store-soon-text small {
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <script>
+    import { initControls } from '../../lib/ui';
+
+    const titles = {
+      en: 'Simple Shot Timer',
+      de: 'Simple Shot Timer',
+    };
+    document.addEventListener('langchange', (e) => {
+      const lang = (e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang;
+      document.title = titles[lang];
+    });
+
+    initControls();
+  </script>
+</Base>
