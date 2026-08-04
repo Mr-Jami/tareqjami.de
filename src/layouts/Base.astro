@@ -1,9 +1,7 @@
 ---
-// Self-hosted Inter (no Google Fonts CDN request) — GDPR-friendly.
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
+// Self-hosted fonts (no Google Fonts CDN request) — GDPR-friendly.
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import { data, DEFAULT_LANG } from '../lib/i18n';
 
@@ -46,6 +44,8 @@ const d = data[lang];
           if (l !== 'en' && l !== 'de') l = 'en';
           document.documentElement.setAttribute('lang', l);
           document.documentElement.setAttribute('data-lang', l);
+          // Marks JS availability so CSS may hide elements for animated reveals.
+          document.documentElement.classList.add('js');
         } catch (e) {}
       })();
     </script>
@@ -69,7 +69,11 @@ const d = data[lang];
           aria-checked="false"
           aria-label={d.ui.themeToggleAria}>
           <span class="ts-track" aria-hidden="true">
-            <span class="ts-knob"><span class="theme-icon"></span></span>
+            <span class="ts-knob">
+              <!-- Tabler icons (MIT), inlined to avoid a dependency for two glyphs -->
+              <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 12.1l.7 .7m-12.1 -.7l-.7 .7" /></svg>
+              <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>
+            </span>
           </span>
         </button>
       </div>

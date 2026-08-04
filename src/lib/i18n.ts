@@ -131,7 +131,7 @@ const AVATAR_URL = '/profile.png';
 export const data: Record<Lang, SiteData> = {
   en: {
     meta: {
-      title: 'Tareq Jami — Software Engineer',
+      title: 'Tareq Jami · Software Engineer',
       description:
         'Tareq Jami, Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla, full-stack developer, and open-source maintainer of ng-openapi.',
     },
@@ -177,7 +177,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Lead Frontend Engineer',
-            period: 'Mar 2026 – Present',
+            period: 'Mar 2026 - Present',
             bullets: [
               'Lead frontend architecture and set technical direction across internal tooling projects',
               'Mentor developers and establish frontend standards through code reviews and pair programming',
@@ -187,7 +187,7 @@ export const data: Record<Lang, SiteData> = {
           },
           {
             title: 'Software Engineer',
-            period: 'Sep 2024 – Feb 2026',
+            period: 'Sep 2024 - Feb 2026',
             bullets: [
               'Led digitalization of internal processes for Tesla Automation worldwide',
               'Developed full-stack solutions with frontend and backend architecture consultation',
@@ -202,7 +202,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Founder & Software Engineer · Freelance',
-            period: 'Jun 2024 – Present',
+            period: 'Jun 2024 - Present',
             bullets: [
               'Provide full-stack software development and IT consulting for clients',
               'Deliver custom web and application solutions end to end, from requirements to deployment',
@@ -215,8 +215,8 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Germany',
         roles: [
           {
-            title: 'Software Engineer – Lead Frontend Developer',
-            period: 'Sep 2022 – Aug 2024',
+            title: 'Software Engineer - Lead Frontend Developer',
+            period: 'Sep 2022 - Aug 2024',
             bullets: [
               'Led frontend development initiatives and architectural decisions',
               'Developed cloud-based applications with modern technologies',
@@ -231,7 +231,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Full Stack Developer · Part-time',
-            period: 'Oct 2021 – Oct 2023',
+            period: 'Oct 2021 - Oct 2023',
             bullets: [
               'Developed frontend/backend applications using Angular and .NET frameworks',
               'Performed system administration, code reviews, and deployment automation',
@@ -246,7 +246,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Full Stack Developer',
-            period: 'Sep 2020 – Aug 2022',
+            period: 'Sep 2020 - Aug 2022',
             bullets: [
               'Built responsive web applications using Angular, TypeScript, and Node.js',
               'Developed backend services with C# .NET, Entity Framework, and MS SQL',
@@ -261,7 +261,7 @@ export const data: Record<Lang, SiteData> = {
         name: 'ng-openapi',
         url: 'https://ng-openapi.dev',
         role: 'Creator & Maintainer',
-        period: 'Jul 2025 – Present',
+        period: 'Jul 2025 - Present',
         bullets: [
           'Angular client-generation library for OpenAPI specifications',
           'Actively maintained project serving developers in the Angular ecosystem',
@@ -283,8 +283,8 @@ export const data: Record<Lang, SiteData> = {
       {
         school: 'Hochschule Trier',
         location: 'Germany',
-        degree: 'Master of Science — Computer Science',
-        period: 'Mar 2025 – Present',
+        degree: 'Master of Science, Computer Science',
+        period: 'Mar 2025 - Present',
         bullets: ['Expected graduation 2028'],
       },
     ],
@@ -303,7 +303,7 @@ export const data: Record<Lang, SiteData> = {
           'I agree that my details will be stored to process my request',
         send: 'Send message',
         sending: 'Sending…',
-        success: 'Thanks! Your message has been sent — I’ll get back to you soon.',
+        success: 'Thanks! Your message has been sent. I’ll get back to you soon.',
         error: 'Something went wrong. Please try again in a moment.',
         privacyLabel: 'Privacy Policy',
       },
@@ -312,7 +312,7 @@ export const data: Record<Lang, SiteData> = {
 
   de: {
     meta: {
-      title: 'Tareq Jami — Softwareentwickler',
+      title: 'Tareq Jami · Softwareentwickler',
       description:
         'Tareq Jami, Softwareentwickler aus Hamburg. Leitender Frontend-Entwickler bei Tesla, Full-Stack-Entwickler und Open-Source-Maintainer von ng-openapi.',
     },
@@ -335,7 +335,7 @@ export const data: Record<Lang, SiteData> = {
       name: NAME,
       role: 'Softwareentwickler',
       tagline:
-        'Leitender Frontend-Entwickler bei Tesla – ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
+        'Leitender Frontend-Entwickler bei Tesla -ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
       location: 'Hamburg, Deutschland',
     },
     sections: {
@@ -358,7 +358,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Lead Frontend Engineer',
-            period: 'März 2026 – heute',
+            period: 'März 2026 - heute',
             bullets: [
               'Leitung der Frontend-Architektur und Festlegung der technischen Ausrichtung über interne Tooling-Projekte hinweg',
               'Mentoring von Entwicklern sowie Etablierung von Frontend-Standards durch Code-Reviews, Pair-Programming und Onboarding',
@@ -368,7 +368,7 @@ export const data: Record<Lang, SiteData> = {
           },
           {
             title: 'Software Engineer',
-            period: 'Sept. 2024 – Feb. 2026',
+            period: 'Sept. 2024 - Feb. 2026',
             bullets: [
               'Digitalisierung firmeninterner Prozesse (Tesla Automation weltweit)',
               'Frontend- und Backend-Entwicklung',
@@ -384,7 +384,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Gründer & Softwareentwickler · Freiberuflich',
-            period: 'Juni 2024 – heute',
+            period: 'Juni 2024 - heute',
             bullets: [
               'Biete Full-Stack-Softwareentwicklung und IT-Beratung für Kunden',
               'Liefere maßgeschneiderte Web- und Anwendungslösungen end-to-end, von der Anforderung bis zum Deployment',
@@ -397,8 +397,8 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Deutschland',
         roles: [
           {
-            title: 'Software Engineer – Lead Frontend Developer',
-            period: 'Sept. 2022 – Aug. 2024',
+            title: 'Software Engineer - Lead Frontend Developer',
+            period: 'Sept. 2022 - Aug. 2024',
             bullets: [
               'Cloud-Entwicklung',
               'Frontend- und Backend-Entwicklung',
@@ -414,7 +414,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Full Stack Developer · Teilzeit',
-            period: 'Okt. 2021 – Okt. 2023',
+            period: 'Okt. 2021 - Okt. 2023',
             bullets: [
               'Frontend- und Backend-Entwicklung (Angular/.NET)',
               'Systemadministration und Codeüberprüfung',
@@ -430,7 +430,7 @@ export const data: Record<Lang, SiteData> = {
         roles: [
           {
             title: 'Full Stack Developer',
-            period: 'Sept. 2020 – Aug. 2022',
+            period: 'Sept. 2020 - Aug. 2022',
             bullets: [
               'Entwickelte responsive Webanwendungen mit Angular, TypeScript und Node.js',
               'Entwickelte Backend-Services mit C# .NET, Entity Framework und MS SQL',
@@ -445,7 +445,7 @@ export const data: Record<Lang, SiteData> = {
         name: 'ng-openapi',
         url: 'https://ng-openapi.dev',
         role: 'Ersteller & Maintainer',
-        period: 'Juli 2025 – heute',
+        period: 'Juli 2025 - heute',
         bullets: [
           'Angular-Bibliothek zur Client-Generierung aus OpenAPI-Spezifikationen',
           'Aktiv gepflegtes Projekt für Entwickler im Angular-Ökosystem',
@@ -467,8 +467,8 @@ export const data: Record<Lang, SiteData> = {
       {
         school: 'Hochschule Trier',
         location: 'Deutschland',
-        degree: 'Master of Science — Informatik',
-        period: 'März 2025 – heute',
+        degree: 'Master of Science, Informatik',
+        period: 'März 2025 - heute',
         bullets: ['Voraussichtlicher Abschluss 2028'],
       },
     ],
@@ -487,7 +487,7 @@ export const data: Record<Lang, SiteData> = {
           'Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert werden',
         send: 'Nachricht senden',
         sending: 'Wird gesendet…',
-        success: 'Danke! Deine Nachricht wurde gesendet – ich melde mich bald.',
+        success: 'Danke! Deine Nachricht wurde gesendet - ich melde mich bald.',
         error: 'Etwas ist schiefgelaufen. Bitte versuche es gleich noch einmal.',
         privacyLabel: 'Datenschutzerklärung',
       },
@@ -519,24 +519,35 @@ function initials(name: string): string {
 export function renderHero(d: SiteData): string {
   return `
     <div class="hero-inner">
-      <div class="avatar">
-        <img class="avatar-img" src="${AVATAR_URL}" alt="${esc(initials(d.hero.name))}" width="92" height="92" loading="eager" decoding="async" />
-        <span class="avatar-fallback" aria-hidden="true">${esc(initials(d.hero.name))}</span>
+      <div class="hero-copy">
+        <p class="hero-eyebrow" data-animate="hero">${esc(d.hero.role)} · ${esc(d.hero.location)}</p>
+        <h1 class="hero-name" data-split data-animate="hero">${esc(d.hero.name)}</h1>
+        <p class="hero-tagline" data-animate="hero">${esc(d.hero.tagline)}</p>
+        <div class="hero-actions" data-animate="hero">
+          <a class="btn btn-primary" data-magnetic href="#contact">${esc(d.nav.contact)}</a>
+          <a class="btn btn-ghost" data-magnetic href="/tareq-jami-cv.pdf" download>${esc(d.ui.downloadCv)}</a>
+        </div>
       </div>
-      <h1 class="hero-name">${esc(d.hero.name)}</h1>
-      <p class="hero-role">${esc(d.hero.role)}</p>
-      <p class="hero-tagline">${esc(d.hero.tagline)}</p>
-      <p class="hero-location"><span class="ico">📍</span>${esc(d.hero.location)}</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#contact">${esc(d.nav.contact)}</a>
-        <a class="btn btn-ghost" href="/tareq-jami-cv.pdf" download>${esc(d.ui.downloadCv)}</a>
+      <div class="hero-visual" data-animate="hero">
+        <div class="avatar-frame">
+          <svg class="avatar-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <circle class="ring-base" cx="100" cy="100" r="97" />
+            <circle class="ring-dash" cx="100" cy="100" r="97" />
+          </svg>
+          <div class="avatar">
+            <img class="avatar-img" src="${AVATAR_URL}" alt="${esc(d.hero.name)}" width="220" height="220" loading="eager" decoding="async" />
+            <span class="avatar-fallback" aria-hidden="true">${esc(initials(d.hero.name))}</span>
+          </div>
+        </div>
       </div>
     </div>`;
 }
 
 export function renderAbout(d: SiteData): string {
-  const paras = d.about.map((p) => `<p>${esc(p)}</p>`).join('');
-  return `<h2 class="section-title">${esc(d.sections.about)}</h2><div class="prose">${paras}</div>`;
+  const paras = d.about
+    .map((p, i) => `<p${i === 0 ? ' class="lead"' : ''}>${esc(p)}</p>`)
+    .join('');
+  return `<h2 class="section-title" data-animate="title">${esc(d.sections.about)}</h2><div class="prose about-prose" data-animate="rise">${paras}</div>`;
 }
 
 export function renderExperience(d: SiteData): string {
@@ -556,7 +567,8 @@ export function renderExperience(d: SiteData): string {
         })
         .join('');
       return `
-        <article class="timeline-item">
+        <article class="timeline-item" data-animate="tl">
+          <div class="timeline-line" aria-hidden="true"></div>
           <div class="timeline-marker" aria-hidden="true"></div>
           <div class="timeline-body">
             <h3 class="company">${esc(job.company)} <span class="company-loc">· ${esc(job.location)}</span></h3>
@@ -565,7 +577,7 @@ export function renderExperience(d: SiteData): string {
         </article>`;
     })
     .join('');
-  return `<h2 class="section-title">${esc(d.sections.experience)}</h2><div class="timeline">${items}</div>`;
+  return `<h2 class="section-title" data-animate="title">${esc(d.sections.experience)}</h2><div class="timeline">${items}</div>`;
 }
 
 export function renderOpenSource(d: SiteData): string {
@@ -573,7 +585,7 @@ export function renderOpenSource(d: SiteData): string {
     .map((p) => {
       const bullets = p.bullets.map((b) => `<li>${esc(b)}</li>`).join('');
       return `
-        <article class="card">
+        <article class="os-card" data-animate="rise" data-tilt>
           <div class="card-head">
             <h3 class="card-title"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)} <span class="ext">↗</span></a></h3>
             <span class="role-period">${esc(p.period)}</span>
@@ -583,7 +595,7 @@ export function renderOpenSource(d: SiteData): string {
         </article>`;
     })
     .join('');
-  return `<h2 class="section-title">${esc(d.sections.opensource)}</h2><div class="cards">${cards}</div>`;
+  return `<h2 class="section-title" data-animate="title">${esc(d.sections.opensource)}</h2><div class="cards">${cards}</div>`;
 }
 
 export function renderSkills(d: SiteData): string {
@@ -591,9 +603,9 @@ export function renderSkills(d: SiteData): string {
     .map((g) => {
       const chips = g.items.map((i) => `<li class="chip">${esc(i)}</li>`).join('');
       return `
-        <div class="skill-group">
+        <div class="skill-group" data-animate="rise">
           <h3 class="skill-label">${esc(g.label)}</h3>
-          <ul class="chips">${chips}</ul>
+          <ul class="chips" data-stagger>${chips}</ul>
         </div>`;
     })
     .join('');
@@ -604,11 +616,11 @@ export function renderSkills(d: SiteData): string {
     )
     .join('');
   return `
-    <h2 class="section-title">${esc(d.sections.skills)}</h2>
+    <h2 class="section-title" data-animate="title">${esc(d.sections.skills)}</h2>
     <div class="skills">${groups}
-      <div class="skill-group">
+      <div class="skill-group" data-animate="rise">
         <h3 class="skill-label">${esc(d.sections.languages)}</h3>
-        <ul class="chips">${langs}</ul>
+        <ul class="chips" data-stagger>${langs}</ul>
       </div>
     </div>`;
 }
@@ -618,22 +630,19 @@ export function renderEducation(d: SiteData): string {
     .map((e) => {
       const bullets = e.bullets.map((b) => `<li>${esc(b)}</li>`).join('');
       return `
-        <article class="timeline-item">
-          <div class="timeline-marker" aria-hidden="true"></div>
-          <div class="timeline-body">
-            <h3 class="company">${esc(e.school)} <span class="company-loc">· ${esc(e.location)}</span></h3>
-            <div class="role">
-              <div class="role-head">
-                <h4 class="role-title">${esc(e.degree)}</h4>
-                <span class="role-period">${esc(e.period)}</span>
-              </div>
-              <ul class="bullets">${bullets}</ul>
+        <article class="edu-panel" data-animate="rise">
+          <h3 class="company">${esc(e.school)} <span class="company-loc">· ${esc(e.location)}</span></h3>
+          <div class="role">
+            <div class="role-head">
+              <h4 class="role-title">${esc(e.degree)}</h4>
+              <span class="role-period">${esc(e.period)}</span>
             </div>
+            <ul class="bullets">${bullets}</ul>
           </div>
         </article>`;
     })
     .join('');
-  return `<h2 class="section-title">${esc(d.sections.education)}</h2><div class="timeline">${items}</div>`;
+  return `<h2 class="section-title" data-animate="title">${esc(d.sections.education)}</h2>${items}`;
 }
 
 export function renderSocials(): string {
@@ -641,16 +650,20 @@ export function renderSocials(): string {
     (s) =>
       `<li><a class="social-link" href="${esc(s.url)}" target="_blank" rel="noopener" aria-label="${esc(s.label)}" title="${esc(s.label)}">${s.icon}<span class="social-label">${esc(s.label)}</span></a></li>`,
   ).join('');
-  return `<ul class="socials">${items}</ul>`;
+  return `<ul class="socials" data-stagger>${items}</ul>`;
 }
 
 export function renderContact(d: SiteData): string {
   const f = d.contact.form;
   return `
-    <h2 class="section-title">${esc(d.sections.contact)}</h2>
-    <p class="prose">${esc(d.contact.intro)}</p>
+    <h2 class="section-title" data-animate="title">${esc(d.sections.contact)}</h2>
+    <div class="contact-grid">
+    <div class="contact-side" data-animate="rise">
+    <p class="contact-intro">${esc(d.contact.intro)}</p>
     ${renderSocials()}
+    </div>
     <form
+      data-animate="rise"
       class="contact-form"
       name="contact"
       method="POST"
@@ -676,13 +689,14 @@ export function renderContact(d: SiteData): string {
       </div>
       <label class="consent">
         <input type="checkbox" name="consent" value="yes" required />
-        <span>${esc(f.consent)} – <a href="/datenschutz">${esc(f.privacyLabel)}</a></span>
+        <span>${esc(f.consent)} (<a href="/datenschutz">${esc(f.privacyLabel)}</a>)</span>
       </label>
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">${esc(f.send)}</button>
       </div>
       <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
-    </form>`;
+    </form>
+    </div>`;
 }
 
 export function renderNav(d: SiteData): string {

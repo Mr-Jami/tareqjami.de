@@ -10,6 +10,12 @@ const r = renderAll(lang);
 <Base title={d.meta.title} description={d.meta.description} canonical="https://tareqjami.de/">
   <nav slot="nav" class="nav" data-render="nav" set:html={r.nav}></nav>
 
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+
   <main id="main">
     <section class="hero" data-render="hero" set:html={r.hero}></section>
     <section id="about" class="section" data-render="about" set:html={r.about}></section>
@@ -23,6 +29,7 @@ const r = renderAll(lang);
   <script>
     import { initControls, currentLang } from '../lib/ui';
     import { renderAll, data } from '../lib/i18n';
+    import { initAnimations, initAmbient } from '../lib/animations';
 
     const regions = [
       'nav',
@@ -51,8 +58,14 @@ const r = renderAll(lang);
       if (desc) desc.content = d.meta.description;
     }
 
+    // First render plays the full hero choreography; language switches get a
+    // quick re-entrance instead (initAnimations re-binds all scroll reveals
+    // because applyContent replaces the section DOM).
+    let booted = false;
     document.addEventListener('langchange', (e) => {
       applyContent((e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang);
+      initAnimations(booted ? 'soft' : 'full');
+      booted = true;
     });
 
     // Contact form: submit to Netlify Forms via fetch (progressive enhancement).
@@ -90,5 +103,6 @@ const r = renderAll(lang);
     });
 
     initControls(); // fires the initial `langchange`, rendering current language
+    initAmbient(); // background orbs live outside the re-rendered regions
   </script>
 </Base>
