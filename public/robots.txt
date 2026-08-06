@@ -1,4 +1,49 @@
+# Tareq Jami — https://tareqjami.de
+# Personal profile and CV. The freelance practice behind it is Jami IT
+# (https://jami-it.de). Everything here is public; search engines and AI
+# crawlers are both welcome.
+
 User-agent: *
+Allow: /
+
+# --- AI assistants and answer engines -------------------------------------
+# Explicitly allowed. A structured summary for these lives at /llms.txt
+# (see https://llmstxt.org).
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://tareqjami.de/sitemap-index.xml

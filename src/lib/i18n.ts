@@ -199,6 +199,7 @@ export const data: Record<Lang, SiteData> = {
       {
         company: 'Jami IT',
         location: 'Hamburg, Germany',
+        url: 'https://jami-it.de',
         roles: [
           {
             title: 'Founder & Software Engineer · Freelance',
@@ -381,6 +382,7 @@ export const data: Record<Lang, SiteData> = {
       {
         company: 'Jami IT',
         location: 'Hamburg, Deutschland',
+        url: 'https://jami-it.de',
         roles: [
           {
             title: 'Gründer & Softwareentwickler · Freiberuflich',
@@ -566,12 +568,16 @@ export function renderExperience(d: SiteData): string {
             </div>`;
         })
         .join('');
+      // Companies with their own site link out; the rest stay plain text.
+      const company = job.url
+        ? `<a class="company-link" href="${esc(job.url)}" target="_blank" rel="noopener">${esc(job.company)} <span class="ext">↗</span></a>`
+        : esc(job.company);
       return `
         <article class="timeline-item" data-animate="tl">
           <div class="timeline-line" aria-hidden="true"></div>
           <div class="timeline-marker" aria-hidden="true"></div>
           <div class="timeline-body">
-            <h3 class="company">${esc(job.company)} <span class="company-loc">· ${esc(job.location)}</span></h3>
+            <h3 class="company">${company} <span class="company-loc">· ${esc(job.location)}</span></h3>
             ${roles}
           </div>
         </article>`;

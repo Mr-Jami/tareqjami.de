@@ -543,6 +543,20 @@ html[data-theme='light'] .btn-primary:hover {
   color: var(--muted);
   font-size: 0.9rem;
 }
+/* Company names that link out (e.g. Jami IT) stay visually identical to the
+   plain ones until hover, so the timeline keeps one rhythm. */
+.company-link {
+  color: inherit;
+  text-decoration: none;
+}
+.company-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.company-link .ext {
+  font-size: 0.75em;
+  color: var(--accent);
+}
 .role {
   margin-top: 1rem;
 }
