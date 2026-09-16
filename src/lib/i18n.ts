@@ -179,9 +179,9 @@ export const data: Record<Lang, SiteData> = {
             title: 'Lead Frontend Engineer',
             period: 'Mar 2026 - Present',
             bullets: [
-              'Lead frontend architecture and set technical direction across internal tooling projects',
+              'Make the architectural decisions and set technical direction across internal tooling projects',
               'Mentor developers and establish frontend standards through code reviews and pair programming',
-              'Modernize the codebase with Angular Signals and a reactive, maintainable state architecture',
+              'Modernize the codebase with Angular Signals and a reactive, maintainable state model',
               'Own planning and prioritization while improving developer experience via tooling and CI pipelines',
             ],
           },
@@ -190,23 +190,8 @@ export const data: Record<Lang, SiteData> = {
             period: 'Sep 2024 - Feb 2026',
             bullets: [
               'Led digitalization of internal processes for Tesla Automation worldwide',
-              'Developed full-stack solutions with frontend and backend architecture consultation',
+              'Developed full-stack solutions and made the key architectural decisions for frontend and backend',
               'Conducted requirements analysis and coordinated with stakeholders',
-            ],
-          },
-        ],
-      },
-      {
-        company: 'Jami IT',
-        location: 'Hamburg, Germany',
-        url: 'https://jami-it.de',
-        roles: [
-          {
-            title: 'Founder & Software Engineer · Freelance',
-            period: 'Jun 2024 - Present',
-            bullets: [
-              'Provide full-stack software development and IT consulting for clients',
-              'Deliver custom web and application solutions end to end, from requirements to deployment',
             ],
           },
         ],
@@ -219,7 +204,7 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer - Lead Frontend Developer',
             period: 'Sep 2022 - Aug 2024',
             bullets: [
-              'Led frontend development initiatives and architectural decisions',
+              'Led frontend development and made the architectural decisions across client projects',
               'Developed cloud-based applications with modern technologies',
               'Implemented CI/CD pipelines and supervised multiple development teams',
             ],
@@ -361,35 +346,19 @@ export const data: Record<Lang, SiteData> = {
             title: 'Lead Frontend Engineer',
             period: 'März 2026 - heute',
             bullets: [
-              'Leitung der Frontend-Architektur und Festlegung der technischen Ausrichtung über interne Tooling-Projekte hinweg',
-              'Mentoring von Entwicklern sowie Etablierung von Frontend-Standards durch Code-Reviews, Pair-Programming und Onboarding',
-              'Modernisierung der Codebasis mit Angular Signals und einer reaktiven, wartbaren State-Architektur',
-              'Verantwortung für Planung und Priorisierung bei gleichzeitiger Verbesserung der Developer Experience durch Tooling, CI-Pipelines und Build-Optimierung',
+              'Verantwortlich für Architekturentscheidungen und die technische Ausrichtung der internen Tooling-Projekte',
+              'Mentoring des Teams und Aufbau von Frontend-Standards durch Code-Reviews und Pair-Programming',
+              'Modernisierung der Codebasis mit Angular Signals und einem reaktiven, wartbaren State-Management',
+              'Planung und Priorisierung der Projekte sowie Verbesserung der Developer Experience durch Tooling und CI-Pipelines',
             ],
           },
           {
             title: 'Software Engineer',
             period: 'Sept. 2024 - Feb. 2026',
             bullets: [
-              'Digitalisierung firmeninterner Prozesse (Tesla Automation weltweit)',
-              'Frontend- und Backend-Entwicklung',
-              'Beratung zur Frontend-Architektur',
+              'Digitalisierung interner Prozesse für Tesla Automation weltweit',
+              'Entwicklung von Full-Stack-Lösungen mit Verantwortung für die wesentlichen Architekturentscheidungen in Frontend und Backend',
               'Anforderungsanalyse und Abstimmung mit Stakeholdern und Endnutzern',
-            ],
-          },
-        ],
-      },
-      {
-        company: 'Jami IT',
-        location: 'Hamburg, Deutschland',
-        url: 'https://jami-it.de',
-        roles: [
-          {
-            title: 'Gründer & Softwareentwickler · Freiberuflich',
-            period: 'Juni 2024 - heute',
-            bullets: [
-              'Biete Full-Stack-Softwareentwicklung und IT-Beratung für Kunden',
-              'Liefere maßgeschneiderte Web- und Anwendungslösungen end-to-end, von der Anforderung bis zum Deployment',
             ],
           },
         ],
@@ -402,10 +371,10 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer - Lead Frontend Developer',
             period: 'Sept. 2022 - Aug. 2024',
             bullets: [
-              'Cloud-Entwicklung',
-              'Frontend- und Backend-Entwicklung',
-              'Bereitstellungsautomatisierung',
-              'Projektleitung und Planung',
+              'Leitung der Frontend-Entwicklung und Verantwortung für die Architekturentscheidungen in Kundenprojekten',
+              'Entwicklung cloudbasierter Anwendungen mit modernem Technologie-Stack',
+              'Aufbau von CI/CD-Pipelines und Automatisierung der Deployments',
+              'Fachliche Führung mehrerer Entwicklungsteams',
             ],
           },
         ],
