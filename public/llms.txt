@@ -1,11 +1,11 @@
 # Tareq Jami
 
-> Software engineer based in Hamburg, Germany. Lead Frontend Engineer at Tesla,
+> Fullstack software engineer based in Hamburg, Germany. Lead Frontend Engineer at Tesla Automation,
 > creator and maintainer of the open-source library ng-openapi, and founder of
 > the freelance practice Jami IT. This site is the personal profile and CV;
 > client work runs through Jami IT (https://jami-it.de).
 
-Tareq Jami has been building software professionally since 2019 — full-stack
+Tareq Jami has been building software professionally since 2020 — full-stack
 web applications with Angular, TypeScript and C#/.NET, frontend architecture,
 deployment automation and team mentoring. Working languages are German (native)
 and English. The site is bilingual (EN/DE) and switches client-side.

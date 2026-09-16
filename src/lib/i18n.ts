@@ -34,12 +34,15 @@ interface Talk {
   image: string;
   description: string;
 }
+interface Degree {
+  degree: string;
+  period: string; // empty string hides the date
+  bullets: string[];
+}
 interface Education {
   school: string;
   location: string;
-  degree: string;
-  period: string;
-  bullets: string[];
+  degrees: Degree[];
 }
 interface SkillGroup {
   label: string;
@@ -168,7 +171,7 @@ export const data: Record<Lang, SiteData> = {
     meta: {
       title: 'Tareq Jami · Software Engineer',
       description:
-        'Tareq Jami, Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla, full-stack developer, and open-source maintainer of ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla Automation, Angular and .NET developer, and open-source maintainer of ng-openapi.',
     },
     ui: {
       downloadCv: 'Download CV',
@@ -189,9 +192,9 @@ export const data: Record<Lang, SiteData> = {
     },
     hero: {
       name: NAME,
-      role: 'Software Engineer',
+      role: 'Fullstack Software Engineer',
       tagline:
-        'Lead Frontend Engineer at Tesla, building robust web platforms and open-source tools with Angular, .NET, and the cloud.',
+        'Lead Frontend Engineer at Tesla Automation, building robust web platforms and open-source tools with Angular, .NET, and the cloud.',
       location: 'Hamburg, Germany',
     },
     sections: {
@@ -205,31 +208,32 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Contact',
     },
     about: [
-      'Software Engineer with 6+ years developing full-stack applications using Angular, .NET, and cloud technologies. Currently driving digital transformation at Tesla.',
-      'Open-source maintainer of the ng-openapi library, with proven expertise in frontend architecture, deployment automation, and team mentoring.',
+      'Fullstack Software Engineer with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET. Currently Lead Frontend Engineer at Tesla Automation, responsible for the architecture and technical direction of internal tooling projects.',
+      'Focus on RESTful APIs, relational data modelling, CI/CD and cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator and maintainer of the open-source library ng-openapi with 10,000+ npm downloads per month. Quality-minded through code reviews, automated testing and mentoring; regularly gives training sessions and talks for developers.',
     ],
     experience: [
       {
-        company: 'Tesla',
+        company: 'Tesla Automation',
         location: 'Prüm, Germany',
         roles: [
           {
             title: 'Lead Frontend Engineer',
             period: 'Mar 2026 - Present',
             bullets: [
-              'Make the architectural decisions and set technical direction across internal tooling projects',
-              'Mentor developers and establish frontend standards through code reviews and pair programming',
+              'Own the architecture and technical direction of several internal tooling projects',
+              'Mentor the team; established frontend standards through code reviews and pair programming',
+              'Design and deliver internal training sessions for developers',
               'Modernize the codebase with Angular Signals and a reactive, maintainable state model',
-              'Own planning and prioritization while improving developer experience via tooling and CI pipelines',
+              'Plan and prioritize projects; improve developer experience through tooling and CI pipelines',
             ],
           },
           {
             title: 'Software Engineer',
             period: 'Sep 2024 - Feb 2026',
             bullets: [
-              'Led digitalization of internal processes for Tesla Automation worldwide',
-              'Developed full-stack solutions and made the key architectural decisions for frontend and backend',
-              'Conducted requirements analysis and coordinated with stakeholders',
+              'Led an internal digitalization project that is used internationally across Tesla Automation',
+              'Developed full-stack solutions (Angular/TypeScript, C#/.NET, REST APIs) and made the key architectural decisions for frontend and backend',
+              'Requirements analysis and close coordination with stakeholders and end users at international sites',
             ],
           },
         ],
@@ -239,12 +243,13 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Germany',
         roles: [
           {
-            title: 'Software Engineer - Lead Frontend Developer',
+            title: 'Software Engineer · Lead Frontend Developer',
             period: 'Sep 2022 - Aug 2024',
             bullets: [
-              'Led frontend development and made the architectural decisions across client projects',
-              'Developed cloud-based applications with modern technologies',
-              'Implemented CI/CD pipelines and supervised multiple development teams',
+              'Led frontend development and owned the architecture in client projects',
+              'Built cloud-based full-stack applications (Angular, C#/.NET) on AWS and Azure for clients',
+              'Set up CI/CD pipelines and automated deployments',
+              'Technical lead and project management for a development team',
             ],
           },
         ],
@@ -257,9 +262,9 @@ export const data: Record<Lang, SiteData> = {
             title: 'Full Stack Developer · Part-time',
             period: 'Oct 2021 - Oct 2023',
             bullets: [
-              'Developed frontend/backend applications using Angular and .NET frameworks',
-              'Performed system administration, code reviews, and deployment automation',
-              'Configured GitLab CI pipelines and provided architecture consulting',
+              'Frontend and backend development with Angular and C#/.NET',
+              'System administration, code reviews and deployment automation',
+              'Configured GitLab CI pipelines and servers; software architecture consulting',
             ],
           },
         ],
@@ -272,8 +277,8 @@ export const data: Record<Lang, SiteData> = {
             title: 'Full Stack Developer',
             period: 'Sep 2020 - Aug 2022',
             bullets: [
-              'Built responsive web applications using Angular, TypeScript, and Node.js',
-              'Developed backend services with C# .NET, Entity Framework, and MS SQL',
+              'Built responsive web applications with Angular, TypeScript and Node.js',
+              'Developed backend services and REST APIs with C#/.NET, Entity Framework and MS SQL Server',
               'Mentored employees and implemented automated deployment pipelines',
             ],
           },
@@ -287,8 +292,19 @@ export const data: Record<Lang, SiteData> = {
         role: 'Creator & Maintainer',
         period: 'Jul 2025 - Present',
         bullets: [
-          'Angular client-generation library for OpenAPI specifications',
-          'Actively maintained project serving developers in the Angular ecosystem',
+          'Angular-first OpenAPI client generator: type-safe Angular services, models and validation schemas straight from OpenAPI specifications',
+          '10,000+ npm downloads per month and 70+ GitHub stars; plugin system (Zod, httpResource), multi-client architecture, HTTP interceptors',
+          'Nx monorepo with a Vitest test suite, ESLint/Prettier, GitHub Actions CI and automated releases (release-please, npm publishing)',
+        ],
+      },
+      {
+        name: 'Simple Shot Timer',
+        url: '/apps/simpleshottimer',
+        role: 'Flutter app · Google Play',
+        period: 'May 2026 - Present',
+        bullets: [
+          'Shot timer for sport shooters: microphone shot detection, par drills, splits, local SQLite persistence and CSV export',
+          'No ads, no tracking',
         ],
       },
     ],
@@ -304,23 +320,48 @@ export const data: Record<Lang, SiteData> = {
       },
     ],
     skills: [
-      { label: 'Frontend', items: ['Angular', 'TypeScript / JavaScript', 'Bootstrap', 'Angular Material', 'DevExtreme'] },
-      { label: 'Backend', items: ['C# .NET', 'Entity Framework', 'MS SQL', 'Kafka', 'REST APIs', 'GraphQL'] },
-      { label: 'DevOps', items: ['Cloud Development', 'Deployment Automation', 'GitLab / GitHub CI/CD'] },
+      { label: 'Frontend', items: ['Angular', 'TypeScript', 'RxJS', 'Astro', 'DevExtreme', 'Angular Material', 'AG Grid', 'Bootstrap'] },
+      { label: 'Backend', items: ['C# .NET', 'Entity Framework', 'Node.js', 'NestJS', 'GraphQL'] },
+      { label: 'APIs & Integration', items: ['REST APIs', 'OpenAPI / Swagger', 'HTTP Interceptors', 'Zod', 'Kafka'] },
+      { label: 'Databases', items: ['MS SQL Server', 'PostgreSQL', 'SQLite', 'Redis', 'Prisma', 'Data Modelling'] },
+      { label: 'DevOps & Cloud', items: ['Azure', 'AWS', 'Docker', 'Kubernetes', 'Terraform', 'Git', 'GitLab CI/CD', 'GitHub Actions', 'Deployment Automation'] },
+      { label: 'Testing & Quality', items: ['Vitest', 'Playwright', '.NET Unit Tests', 'Code Reviews', 'Pair Programming', 'ESLint / Prettier', 'Software Architecture', 'Mentoring'] },
+      { label: 'AI Development', items: ['Claude Code', 'MCP', 'Skills Development', 'Consulting'] },
+      { label: 'Mobile & More', items: ['Flutter / Dart', 'Nx Monorepos'] },
     ],
     languages: [
       { name: 'German', level: 'Native' },
-      { name: 'English', level: 'Professional' },
+      { name: 'English', level: 'Fluent' },
       { name: 'Arabic' },
       { name: 'Persian' },
     ],
     education: [
       {
         school: 'Hochschule Trier',
-        location: 'Germany',
-        degree: 'Master of Science, Computer Science',
-        period: 'Mar 2025 - Present',
-        bullets: ['Expected graduation 2028'],
+        location: 'Trier, Germany',
+        degrees: [
+          {
+            degree: 'Master of Science, Computer Science',
+            period: 'Mar 2025 - Present',
+            bullets: ['Expected graduation 2028, alongside full-time work'],
+          },
+          {
+            degree: 'Diploma of Advanced Studies (DAS), Computer Science',
+            period: 'Mar 2025 - Jan 2026',
+            bullets: [],
+          },
+        ],
+      },
+      {
+        school: 'Vocational training',
+        location: 'IHK qualification',
+        degrees: [
+          {
+            degree: 'IT Specialist for Application Development (Fachinformatiker für Anwendungsentwicklung)',
+            period: '',
+            bullets: [],
+          },
+        ],
       },
     ],
     contact: {
@@ -349,7 +390,7 @@ export const data: Record<Lang, SiteData> = {
     meta: {
       title: 'Tareq Jami · Softwareentwickler',
       description:
-        'Tareq Jami, Softwareentwickler aus Hamburg. Leitender Frontend-Entwickler bei Tesla, Full-Stack-Entwickler und Open-Source-Maintainer von ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer aus Hamburg. Lead Frontend Engineer bei Tesla Automation, Angular- und .NET-Entwickler und Open-Source-Maintainer von ng-openapi.',
     },
     ui: {
       downloadCv: 'Lebenslauf herunterladen',
@@ -370,9 +411,9 @@ export const data: Record<Lang, SiteData> = {
     },
     hero: {
       name: NAME,
-      role: 'Softwareentwickler',
+      role: 'Fullstack Software Engineer',
       tagline:
-        'Leitender Frontend-Entwickler bei Tesla -ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
+        'Lead Frontend Engineer bei Tesla Automation – ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
       location: 'Hamburg, Deutschland',
     },
     sections: {
@@ -386,31 +427,32 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Kontakt',
     },
     about: [
-      'Softwareentwickler mit über 6 Jahren Erfahrung in der Entwicklung von Full-Stack-Anwendungen mit Angular, .NET und Cloud-Technologien. Treibe aktuell die digitale Transformation bei Tesla voran.',
-      'Open-Source-Maintainer der Bibliothek ng-openapi, mit fundierter Expertise in Frontend-Architektur, Deployment-Automatisierung und Team-Mentoring.',
+      'Fullstack Software Engineer mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET. Aktuell Lead Frontend Engineer bei Tesla Automation, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte.',
+      'Schwerpunkte: RESTful APIs, relationale Datenmodellierung, CI/CD und Cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator und Maintainer der Open-Source-Bibliothek ng-openapi mit über 10.000 npm-Downloads pro Monat. Qualitätsbewusst durch Code Reviews, automatisiertes Testing und Mentoring; regelmäßig Schulungen und Vorträge für Entwicklerinnen und Entwickler.',
     ],
     experience: [
       {
-        company: 'Tesla',
+        company: 'Tesla Automation',
         location: 'Prüm, Deutschland',
         roles: [
           {
             title: 'Lead Frontend Engineer',
             period: 'März 2026 - heute',
             bullets: [
-              'Verantwortlich für Architekturentscheidungen und die technische Ausrichtung der internen Tooling-Projekte',
-              'Mentoring des Teams und Aufbau von Frontend-Standards durch Code-Reviews und Pair-Programming',
+              'Verantwortung für Architektur und technische Ausrichtung mehrerer interner Tooling-Projekte',
+              'Mentoring des Teams; Frontend-Standards durch Code Reviews und Pair Programming etabliert',
+              'Interne Schulungen für Entwicklerinnen und Entwickler konzipiert und gehalten',
               'Modernisierung der Codebasis mit Angular Signals und einem reaktiven, wartbaren State-Management',
-              'Planung und Priorisierung der Projekte sowie Verbesserung der Developer Experience durch Tooling und CI-Pipelines',
+              'Projektplanung und -priorisierung; bessere Developer Experience durch Tooling und CI-Pipelines',
             ],
           },
           {
             title: 'Software Engineer',
             period: 'Sept. 2024 - Feb. 2026',
             bullets: [
-              'Digitalisierung interner Prozesse für Tesla Automation weltweit',
-              'Entwicklung von Full-Stack-Lösungen mit Verantwortung für die wesentlichen Architekturentscheidungen in Frontend und Backend',
-              'Anforderungsanalyse und Abstimmung mit Stakeholdern und Endnutzern',
+              'Leitung eines internen Digitalisierungsprojekts mit internationalem Einsatz bei Tesla Automation',
+              'Entwicklung von Fullstack-Lösungen (Angular/TypeScript, C#/.NET, REST-APIs) mit Verantwortung für die wesentlichen Architekturentscheidungen in Frontend und Backend',
+              'Anforderungsanalyse und enge Abstimmung mit Stakeholdern und Endnutzern an internationalen Standorten',
             ],
           },
         ],
@@ -420,13 +462,13 @@ export const data: Record<Lang, SiteData> = {
         location: 'Hamburg, Deutschland',
         roles: [
           {
-            title: 'Software Engineer - Lead Frontend Developer',
+            title: 'Software Engineer · Lead Frontend Developer',
             period: 'Sept. 2022 - Aug. 2024',
             bullets: [
-              'Leitung der Frontend-Entwicklung und Verantwortung für die Architekturentscheidungen in Kundenprojekten',
-              'Entwicklung cloudbasierter Anwendungen mit modernem Technologie-Stack',
+              'Leitung der Frontend-Entwicklung und Architekturverantwortung in Kundenprojekten',
+              'Cloudbasierte Fullstack-Anwendungen (Angular, C#/.NET) auf AWS und Azure für Kunden entwickelt',
               'Aufbau von CI/CD-Pipelines und Automatisierung der Deployments',
-              'Fachliche Führung mehrerer Entwicklungsteams',
+              'Technical Lead und Projektleitung für ein Entwicklungsteam',
             ],
           },
         ],
@@ -439,10 +481,9 @@ export const data: Record<Lang, SiteData> = {
             title: 'Full Stack Developer · Teilzeit',
             period: 'Okt. 2021 - Okt. 2023',
             bullets: [
-              'Frontend- und Backend-Entwicklung (Angular/.NET)',
-              'Systemadministration und Codeüberprüfung',
-              'GitLab-CI, Bereitstellungsautomatisierung, Serverkonfiguration',
-              'Beratung in der Softwarearchitektur',
+              'Frontend- und Backend-Entwicklung mit Angular und C#/.NET',
+              'Systemadministration, Code Reviews und Deployment-Automatisierung',
+              'Konfiguration von GitLab-CI-Pipelines und Servern; Beratung zur Softwarearchitektur',
             ],
           },
         ],
@@ -455,9 +496,9 @@ export const data: Record<Lang, SiteData> = {
             title: 'Full Stack Developer',
             period: 'Sept. 2020 - Aug. 2022',
             bullets: [
-              'Entwickelte responsive Webanwendungen mit Angular, TypeScript und Node.js',
-              'Entwickelte Backend-Services mit C# .NET, Entity Framework und MS SQL',
-              'Mentorierte Mitarbeitende und implementierte automatisierte Deployment-Pipelines',
+              'Entwicklung responsiver Webanwendungen mit Angular, TypeScript und Node.js',
+              'Entwicklung von Backend-Services und REST-APIs mit C#/.NET, Entity Framework und MS SQL Server',
+              'Mentoring von Mitarbeitenden und Implementierung automatisierter Deployment-Pipelines',
             ],
           },
         ],
@@ -467,11 +508,22 @@ export const data: Record<Lang, SiteData> = {
       {
         name: 'ng-openapi',
         url: 'https://ng-openapi.dev',
-        role: 'Ersteller & Maintainer',
+        role: 'Creator & Maintainer',
         period: 'Juli 2025 - heute',
         bullets: [
-          'Angular-Bibliothek zur Client-Generierung aus OpenAPI-Spezifikationen',
-          'Aktiv gepflegtes Projekt für Entwickler im Angular-Ökosystem',
+          'Angular-first OpenAPI-Client-Generator: erzeugt typsichere Angular-Services, Modelle und Validierungsschemas direkt aus OpenAPI-Spezifikationen',
+          'Über 10.000 npm-Downloads pro Monat und 70+ GitHub-Stars; Plugin-System (Zod, httpResource), Multi-Client-Architektur, HTTP-Interceptors',
+          'Nx-Monorepo mit Vitest-Testsuite, ESLint/Prettier, GitHub-Actions-CI und automatisierten Releases (release-please, npm-Publishing)',
+        ],
+      },
+      {
+        name: 'Simple Shot Timer',
+        url: '/apps/simpleshottimer',
+        role: 'Flutter-App · Google Play',
+        period: 'Mai 2026 - heute',
+        bullets: [
+          'Shot-Timer für Sportschützen: Schusserkennung über das Mikrofon, Par-Drills, Splits, lokale SQLite-Persistenz und CSV-Export',
+          'Ohne Werbung und Tracking',
         ],
       },
     ],
@@ -487,23 +539,48 @@ export const data: Record<Lang, SiteData> = {
       },
     ],
     skills: [
-      { label: 'Frontend', items: ['Angular', 'TypeScript / JavaScript', 'Bootstrap', 'Angular Material', 'DevExtreme'] },
-      { label: 'Backend', items: ['C# .NET', 'Entity Framework', 'MS SQL', 'Kafka', 'REST APIs', 'GraphQL'] },
-      { label: 'DevOps', items: ['Cloud-Entwicklung', 'Deployment-Automatisierung', 'GitLab / GitHub CI/CD'] },
+      { label: 'Frontend', items: ['Angular', 'TypeScript', 'RxJS', 'Astro', 'DevExtreme', 'Angular Material', 'AG Grid', 'Bootstrap'] },
+      { label: 'Backend', items: ['C# .NET', 'Entity Framework', 'Node.js', 'NestJS', 'GraphQL'] },
+      { label: 'APIs & Integration', items: ['REST-APIs', 'OpenAPI / Swagger', 'HTTP-Interceptors', 'Zod', 'Kafka'] },
+      { label: 'Datenbanken', items: ['MS SQL Server', 'PostgreSQL', 'SQLite', 'Redis', 'Prisma', 'Datenmodellierung'] },
+      { label: 'DevOps & Cloud', items: ['Azure', 'AWS', 'Docker', 'Kubernetes', 'Terraform', 'Git', 'GitLab CI/CD', 'GitHub Actions', 'Deployment-Automatisierung'] },
+      { label: 'Testing & Qualität', items: ['Vitest', 'Playwright', '.NET Unit-Tests', 'Code Reviews', 'Pair Programming', 'ESLint / Prettier', 'Softwarearchitektur', 'Mentoring'] },
+      { label: 'KI-Entwicklung', items: ['Claude Code', 'MCP', 'Skills-Entwicklung', 'Beratung'] },
+      { label: 'Mobile & Weitere', items: ['Flutter / Dart', 'Nx-Monorepos'] },
     ],
     languages: [
       { name: 'Deutsch', level: 'Muttersprache' },
-      { name: 'Englisch', level: 'Verhandlungssicher' },
+      { name: 'Englisch', level: 'Fließend' },
       { name: 'Arabisch' },
       { name: 'Persisch' },
     ],
     education: [
       {
         school: 'Hochschule Trier',
-        location: 'Deutschland',
-        degree: 'Master of Science, Informatik',
-        period: 'März 2025 - heute',
-        bullets: ['Voraussichtlicher Abschluss 2028'],
+        location: 'Trier, Deutschland',
+        degrees: [
+          {
+            degree: 'Master of Science, Informatik',
+            period: 'März 2025 - heute',
+            bullets: ['Voraussichtlicher Abschluss 2028; Studium parallel zur Berufstätigkeit'],
+          },
+          {
+            degree: 'Diploma of Advanced Studies (DAS), Informatik',
+            period: 'März 2025 - Jan. 2026',
+            bullets: [],
+          },
+        ],
+      },
+      {
+        school: 'Berufsausbildung',
+        location: 'IHK-Abschluss',
+        degrees: [
+          {
+            degree: 'Fachinformatiker für Anwendungsentwicklung',
+            period: '',
+            bullets: [],
+          },
+        ],
       },
     ],
     contact: {
@@ -689,19 +766,29 @@ export function renderSkills(d: SiteData): string {
 }
 
 export function renderEducation(d: SiteData): string {
+  // Same markup as experience roles, so several degrees group under one school.
   const items = d.education
     .map((e) => {
-      const bullets = e.bullets.map((b) => `<li>${esc(b)}</li>`).join('');
+      const degrees = e.degrees
+        .map((g) => {
+          const bullets = g.bullets.length
+            ? `<ul class="bullets">${g.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>`
+            : '';
+          const period = g.period ? `<span class="role-period">${esc(g.period)}</span>` : '';
+          return `
+            <div class="role">
+              <div class="role-head">
+                <h4 class="role-title">${esc(g.degree)}</h4>
+                ${period}
+              </div>
+              ${bullets}
+            </div>`;
+        })
+        .join('');
       return `
         <article class="edu-panel" data-animate="rise">
           <h3 class="company">${esc(e.school)} <span class="company-loc">· ${esc(e.location)}</span></h3>
-          <div class="role">
-            <div class="role-head">
-              <h4 class="role-title">${esc(e.degree)}</h4>
-              <span class="role-period">${esc(e.period)}</span>
-            </div>
-            <ul class="bullets">${bullets}</ul>
-          </div>
+          ${degrees}
         </article>`;
     })
     .join('');
