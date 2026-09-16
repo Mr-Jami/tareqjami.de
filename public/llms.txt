@@ -36,10 +36,19 @@ the freelance practice and https://tareqjami.de for the personal profile.
 - [Simple Shot Timer](https://tareqjami.de/apps/simpleshottimer): Flutter shot
   timer app for sport shooters.
 
+## Talks
+
+- [Strong Types, Strong Frontends](https://tareqjami.de/talks/strong-types):
+  talk at the HH.js meetup in Hamburg, September 2025, on generating typed API
+  clients from OpenAPI specs for Angular (ng-openapi, Hey API, OpenAPI
+  Generator). The link forwards to the recording on YouTube
+  (https://www.youtube.com/watch?v=xdvYpp-MZf4).
+
 ## Elsewhere
 
 - GitHub: https://github.com/Mr-Jami
 - LinkedIn: https://linkedin.com/in/tareqjami
+- YouTube (Angular Welt, German-language Angular channel): https://www.youtube.com/@AngularWelt
 - Medium: https://medium.com/@tareqjami
 - Stack Overflow: https://stackoverflow.com/users/14259165/t-jami
 

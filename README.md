@@ -43,6 +43,8 @@ Connected to Netlify — pushes to `main` trigger a build (`npm run build`) and 
 ## Domains
 Primary (canonical): **tareqjami.de**. Aliases redirect to it with a 301: **jami.cc**, **jami-it.de**, **tareqjami.com** (and any `www.` host).
 
+Short links on the primary domain also live in `netlify.toml` (e.g. `/talks/strong-types` → the YouTube recording of the HH.js talk). They use a 302 so the target can change later; add one `[[redirects]]` block per link.
+
 Redirects are defined in `netlify.toml`; the page also sets `<link rel="canonical">` to `https://tareqjami.de/` so only the primary domain is indexed. A sitemap (`@astrojs/sitemap`, output `/sitemap-index.xml`) and `public/robots.txt` are generated/served for SEO.
 
 To finish hookup in Netlify (**Site → Domain management**):

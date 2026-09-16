@@ -52,3 +52,12 @@
   to = "https://tareqjami.de/:splat"
   status = 301
   force = true
+
+# --- Short links --------------------------------------------------------
+# Memorable paths on the primary domain that forward to external content.
+# 302 (not 301) so the target can change later without browsers caching
+# the old destination. No `force` needed: these paths don't exist in dist/.
+[[redirects]]
+  from = "/talks/strong-types"
+  to = "https://www.youtube.com/watch?v=xdvYpp-MZf4"
+  status = 302
