@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import { data, localePath } from '../../../lib/i18n';
+import { appNode } from '../../../lib/schema';
 import type { LangProps } from '../../../lib/routes';
 export { getStaticPaths } from '../../../lib/routes';
 
@@ -30,9 +31,16 @@ const t = {
 
 const PLAY_URL =
   'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
+const ICON = '/apps/simpleshottimer/icon.png';
+const PATH = '/apps/simpleshottimer/';
 ---
 
-<Base lang={lang} path="/apps/simpleshottimer/" title={t.title} description={t.description}>
+<Base
+  lang={lang}
+  path={PATH}
+  title={t.title}
+  description={t.description}
+  extraSchema={[appNode({ path: PATH, lang, description: t.tagline, playUrl: PLAY_URL, icon: ICON })]}>
   <nav slot="nav" class="nav">
     <a href={localePath(lang, '/')} class="nav-link">← {d.ui.home}</a>
   </nav>
@@ -40,7 +48,7 @@ const PLAY_URL =
   <main id="main">
     <section class="app-landing">
       <div class="app-icon" aria-hidden="true">
-        <img src="/apps/simpleshottimer/icon.png" alt="" width="120" height="120" />
+        <img src={ICON} alt="" width="120" height="120" />
       </div>
 
       <h1 class="app-name">Simple Shot Timer</h1>

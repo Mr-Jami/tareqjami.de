@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { renderAll, data } from '../../lib/i18n';
+import { homepageNodes } from '../../lib/schema';
 import type { LangProps } from '../../lib/routes';
 export { getStaticPaths } from '../../lib/routes';
 
@@ -9,7 +10,13 @@ const d = data[lang];
 const r = renderAll(lang);
 ---
 
-<Base lang={lang} path="/" title={d.meta.title} description={d.meta.description}>
+<Base
+  lang={lang}
+  path="/"
+  title={d.meta.title}
+  description={d.meta.description}
+  pageType="ProfilePage"
+  extraSchema={homepageNodes(lang)}>
   <nav slot="nav" class="nav" set:html={r.nav}></nav>
 
   <div class="bg-layer" aria-hidden="true">

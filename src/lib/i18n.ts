@@ -32,6 +32,8 @@ interface Job {
 interface Project {
   name: string;
   url: string;
+  repo?: string; // source repository → SoftwareSourceCode schema (apps have their own page)
+  language?: string; // main programming language, for the same schema
   role: string;
   period: string;
   bullets: string[];
@@ -41,7 +43,9 @@ interface Talk {
   event: string;
   date: string;
   duration: string;
+  durationMinutes: number; // for the VideoObject schema (ISO 8601 duration)
   url: string;
+  uploadDate: string; // YYYY-MM-DD, from the YouTube video details
   image: string;
   description: string;
 }
@@ -174,8 +178,13 @@ const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@AngularWelt';
 // /talks/strong-types (netlify.toml) forwards to the same recording.
 const TALK_STRONG_TYPES = {
   url: 'https://www.youtube.com/watch?v=xdvYpp-MZf4',
+  uploadDate: '2025-09-11',
+  durationMinutes: 22,
   image: '/talks/strong-types-strong-frontends.jpg',
 };
+
+// Source repository of ng-openapi (the visible link goes to the docs site).
+const NG_OPENAPI_REPO = 'https://github.com/ng-openapi/ng-openapi';
 
 const SOCIALS: Social[] = [
   { label: 'GitHub', url: 'https://github.com/Mr-Jami', icon: SOCIAL_ICONS.github },
@@ -350,6 +359,8 @@ export const data: Record<Lang, SiteData> = {
       {
         name: 'ng-openapi',
         url: 'https://ng-openapi.dev',
+        repo: NG_OPENAPI_REPO,
+        language: 'TypeScript',
         role: 'Creator & Maintainer',
         period: 'Jul 2025 - Present',
         bullets: [
@@ -598,6 +609,8 @@ export const data: Record<Lang, SiteData> = {
       {
         name: 'ng-openapi',
         url: 'https://ng-openapi.dev',
+        repo: NG_OPENAPI_REPO,
+        language: 'TypeScript',
         role: 'Creator & Maintainer',
         period: 'Juli 2025 - heute',
         bullets: [
