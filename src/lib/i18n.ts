@@ -189,7 +189,7 @@ const NG_OPENAPI_REPO = 'https://github.com/ng-openapi/ng-openapi';
 const SOCIALS: Social[] = [
   { label: 'GitHub', url: 'https://github.com/Mr-Jami', icon: SOCIAL_ICONS.github },
   { label: 'LinkedIn', url: 'https://linkedin.com/in/tareqjami', icon: SOCIAL_ICONS.linkedin },
-  { label: 'YouTube', url: YOUTUBE_CHANNEL_URL, icon: SOCIAL_ICONS.youtube },
+  { label: 'YouTube · AngularWelt', url: YOUTUBE_CHANNEL_URL, icon: SOCIAL_ICONS.youtube },
   { label: 'Medium', url: 'https://medium.com/@tareqjami', icon: SOCIAL_ICONS.medium },
   {
     label: 'Stack Overflow',
