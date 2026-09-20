@@ -1,0 +1,81 @@
+---
+import Base from '../../layouts/Base.astro';
+import { renderAll, data } from '../../lib/i18n';
+import type { LangProps } from '../../lib/routes';
+export { getStaticPaths } from '../../lib/routes';
+
+const { lang } = Astro.props as LangProps;
+const d = data[lang];
+const r = renderAll(lang);
+---
+
+<Base lang={lang} path="/" title={d.meta.title} description={d.meta.description}>
+  <nav slot="nav" class="nav" set:html={r.nav}></nav>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+
+  <main id="main">
+    <section class="hero" set:html={r.hero}></section>
+    <section id="about" class="section" set:html={r.about}></section>
+    <section id="experience" class="section" set:html={r.experience}></section>
+    <section id="opensource" class="section" set:html={r.opensource}></section>
+    <section id="talks" class="section" set:html={r.talks}></section>
+    <section id="skills" class="section" set:html={r.skills}></section>
+    <section id="education" class="section" set:html={r.education}></section>
+    <section id="contact" class="section" set:html={r.contact}></section>
+  </main>
+
+  <script>
+    import { initControls } from '../../lib/ui';
+    import { initAnimations, initAmbient } from '../../lib/animations';
+
+    // If the avatar image fails, drop it so the initials show through.
+    const avatar = document.querySelector<HTMLImageElement>('.avatar-img');
+    if (avatar) {
+      avatar.addEventListener('error', () => (avatar.closest('picture') ?? avatar).remove(), { once: true });
+    }
+
+    // Contact form: submit to Netlify Forms via fetch (progressive enhancement).
+    // Without JS the form still POSTs normally and Netlify redirects to the
+    // success page of this language (the form's action).
+    document.addEventListener('submit', async (e) => {
+      const form = e.target;
+      if (!(form instanceof HTMLFormElement) || form.getAttribute('name') !== 'contact') return;
+      e.preventDefault();
+      const msg = form.dataset;
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const show = (text: string | undefined, cls: string) => {
+        if (!status) return;
+        status.hidden = false;
+        status.className = 'form-status' + (cls ? ' ' + cls : '');
+        status.textContent = text ?? '';
+      };
+      if (btn) btn.disabled = true;
+      show(msg.msgSending, '');
+      try {
+        const body = new URLSearchParams(new FormData(form) as any).toString();
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show(msg.msgSuccess, 'ok');
+      } catch (err) {
+        show(msg.msgError, 'err');
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+
+    initControls();
+    initAnimations();
+    initAmbient();
+  </script>
+</Base>

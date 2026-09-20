@@ -1,27 +1,40 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from '../../../layouts/Base.astro';
+import { data, localePath } from '../../../lib/i18n';
+import type { LangProps } from '../../../lib/routes';
+export { getStaticPaths } from '../../../lib/routes';
 
 // App landing page for "Simple Shot Timer": logo, tagline and store buttons.
 // Deliberately no user-agent redirect to Google Play: Googlebot Smartphone's
 // UA contains "Android", so a page that navigates away before it renders gets
 // indexed as the Play Store listing instead of as this page. The Play badge
 // is the primary CTA instead.
-const title = 'Simple Shot Timer';
-const description =
-  'Simple Shot Timer — a focused interval / shot timer app. Get it on Google Play.';
+const { lang } = Astro.props as LangProps;
+const d = data[lang];
+const t = {
+  en: {
+    title: 'Simple Shot Timer',
+    description: 'Simple Shot Timer — a focused interval / shot timer app. Get it on Google Play.',
+    tagline: 'Practical shot timer: par drills, splits, history & CSV. No ads, no tracking.',
+    badgeAria: 'Get Simple Shot Timer on Google Play',
+    soon: 'Coming soon',
+  },
+  de: {
+    title: 'Simple Shot Timer',
+    description: 'Simple Shot Timer — ein fokussierter Intervall-/Shot-Timer. Jetzt bei Google Play.',
+    tagline: 'Praktischer Shot-Timer: Par-Übungen, Splits, Verlauf & CSV. Keine Werbung, kein Tracking.',
+    badgeAria: 'Simple Shot Timer bei Google Play laden',
+    soon: 'Demnächst',
+  },
+}[lang];
 
 const PLAY_URL =
   'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
 ---
 
-<Base
-  title={title}
-  description={description}
-  canonical="https://tareqjami.de/apps/simpleshottimer/">
+<Base lang={lang} path="/apps/simpleshottimer/" title={t.title} description={t.description}>
   <nav slot="nav" class="nav">
-    <a href="/" class="nav-link"
-      >← <span data-lang-block="en">Home</span><span data-lang-block="de">Start</span></a
-    >
+    <a href={localePath(lang, '/')} class="nav-link">← {d.ui.home}</a>
   </nav>
 
   <main id="main">
@@ -32,10 +45,7 @@ const PLAY_URL =
 
       <h1 class="app-name">Simple Shot Timer</h1>
 
-      <p class="app-tagline">
-        <span data-lang-block="en">Practical shot timer: par drills, splits, history &amp; CSV. No ads, no tracking.</span>
-        <span data-lang-block="de">Praktischer Shot-Timer: Par-Übungen, Splits, Verlauf &amp; CSV. Keine Werbung, kein Tracking.</span>
-      </p>
+      <p class="app-tagline">{t.tagline}</p>
 
       <div class="store-buttons">
         {/* Official Google Play badge — used unmodified per the Google Play
@@ -45,7 +55,7 @@ const PLAY_URL =
           href={PLAY_URL}
           target="_blank"
           rel="noopener"
-          aria-label="Get Simple Shot Timer on Google Play">
+          aria-label={t.badgeAria}>
           <img
             src="/apps/simpleshottimer/gplay-en.png"
             alt="Get it on Google Play"
@@ -65,8 +75,7 @@ const PLAY_URL =
           </svg>
           <span class="store-soon-text">
             <strong>App Store</strong>
-            <small data-lang-block="en">Coming soon</small>
-            <small data-lang-block="de">Demnächst</small>
+            <small>{t.soon}</small>
           </span>
         </span>
       </div>
@@ -156,17 +165,7 @@ const PLAY_URL =
   </style>
 
   <script>
-    import { initControls } from '../../lib/ui';
-
-    const titles = {
-      en: 'Simple Shot Timer',
-      de: 'Simple Shot Timer',
-    };
-    document.addEventListener('langchange', (e) => {
-      const lang = (e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang;
-      document.title = titles[lang];
-    });
-
+    import { initControls } from '../../../lib/ui';
     initControls();
   </script>
 </Base>

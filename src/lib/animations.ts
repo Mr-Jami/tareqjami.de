@@ -1,7 +1,6 @@
 // Animation layer for the one-page profile, built on anime.js v4.
-// initAnimations() is re-run after every language re-render (the i18n system
-// replaces section innerHTML), so everything here is idempotent: previous
-// observers/animations are disposed first, then targets are re-bound.
+// initAnimations() is idempotent: previous observers/animations are disposed
+// first, then targets are bound, so it is safe to call more than once.
 // All motion is gated behind prefers-reduced-motion; without JS the CSS
 // never hides content (see the `html.js [data-animate]` rule).
 import { animate, createTimeline, stagger, utils } from 'animejs';
@@ -53,37 +52,23 @@ function splitName(): void {
 
 // --- hero entrance --------------------------------------------------------
 
-function heroIntro(mode: 'full' | 'soft'): void {
+function heroIntro(): void {
   splitName();
   // Hide chars before first paint of the timeline, then reveal the h1 shell.
   utils.set('.hero-name .char', { opacity: 0 });
   utils.set('.hero-name', { opacity: 1 });
 
-  if (mode === 'full') {
-    const tl = createTimeline({ defaults: { ease: 'outExpo', duration: 850 } });
-    tl.add('.hero-eyebrow', { opacity: [0, 1], translateY: [18, 0] })
-      .add(
-        '.hero-name .char',
-        { opacity: [0, 1], translateY: [54, 0], rotateZ: [6, 0], duration: 950, delay: stagger(28) },
-        '-=620',
-      )
-      .add('.hero-tagline', { opacity: [0, 1], translateY: [22, 0] }, '-=780')
-      .add('.hero-actions', { opacity: [0, 1], translateY: [18, 0] }, '-=740')
-      .add('.hero-visual', { opacity: [0, 1], scale: [0.92, 1], duration: 1000 }, '-=900');
-    running.push(tl);
-  } else {
-    // Language switch: quick, quiet re-entrance instead of the full show.
-    utils.set('.hero-eyebrow, .hero-tagline, .hero-actions, .hero-visual', { opacity: 1 });
-    running.push(
-      animate('.hero-name .char', {
-        opacity: [0, 1],
-        translateY: [16, 0],
-        duration: 450,
-        ease: 'outCubic',
-        delay: stagger(12),
-      }),
-    );
-  }
+  const tl = createTimeline({ defaults: { ease: 'outExpo', duration: 850 } });
+  tl.add('.hero-eyebrow', { opacity: [0, 1], translateY: [18, 0] })
+    .add(
+      '.hero-name .char',
+      { opacity: [0, 1], translateY: [54, 0], rotateZ: [6, 0], duration: 950, delay: stagger(28) },
+      '-=620',
+    )
+    .add('.hero-tagline', { opacity: [0, 1], translateY: [22, 0] }, '-=780')
+    .add('.hero-actions', { opacity: [0, 1], translateY: [18, 0] }, '-=740')
+    .add('.hero-visual', { opacity: [0, 1], scale: [0.92, 1], duration: 1000 }, '-=900');
+  running.push(tl);
 
   // Slow rotating dashed ring around the avatar (ambient, transform-only).
   const ring = document.querySelector('.ring-dash');
@@ -205,17 +190,17 @@ function bindMagnetic(): void {
 
 // --- public API -----------------------------------------------------------
 
-/** Re-bind all content animations. Call after every language re-render. */
-export function initAnimations(mode: 'full' | 'soft'): void {
+/** Bind all content animations once the page has loaded. */
+export function initAnimations(): void {
   dispose();
   if (reducedMotion()) return; // CSS keeps everything visible
-  heroIntro(mode);
+  heroIntro();
   scrollReveals();
   bindTilt();
   bindMagnetic();
 }
 
-/** One-time ambient background motion (orbs live outside re-rendered regions). */
+/** Ambient background motion of the orbs behind the hero. */
 export function initAmbient(): void {
   if (reducedMotion()) return;
   animate('.orb-a', {

@@ -1,22 +1,35 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
+import { data, localePath } from '../../lib/i18n';
+import type { LangProps } from '../../lib/routes';
+export { getStaticPaths } from '../../lib/routes';
 
-// German is the legally authoritative version; English is a convenience translation.
-const title = 'Impressum — Tareq Jami';
-const description = 'Impressum / legal notice for Jami IT (Tareq Jami), Hamburg.';
+// German is the legally authoritative version; English is a convenience
+// translation. Both live in this file; the route renders one of them.
+const { lang } = Astro.props as LangProps;
+const d = data[lang];
+const meta = {
+  de: {
+    title: 'Impressum — Tareq Jami',
+    description: 'Impressum von Jami IT (Tareq Jami), Hamburg.',
+  },
+  en: {
+    title: 'Legal Notice — Tareq Jami',
+    description: 'Legal notice for Jami IT (Tareq Jami), Hamburg.',
+  },
+}[lang];
 ---
 
-<Base title={title} description={description} canonical="https://tareqjami.de/impressum/">
+<Base lang={lang} path="/impressum/" title={meta.title} description={meta.description}>
   <nav slot="nav" class="nav">
-    <a href="/" class="nav-link"
-      >← <span data-lang-block="en">Home</span><span data-lang-block="de">Start</span></a
-    >
+    <a href={localePath(lang, '/')} class="nav-link">← {d.ui.home}</a>
   </nav>
 
   <main id="main">
     <article class="legal">
-      <!-- German (authoritative) -->
-      <div data-lang-block="de">
+      {/* German (authoritative) */}
+      {lang === 'de' && (
+      <div>
         <h1>Impressum</h1>
 
         <h2>Angaben gemäß § 5 DDG</h2>
@@ -50,9 +63,11 @@ const description = 'Impressum / legal notice for Jami IT (Tareq Jami), Hamburg.
           einer Verbraucherschlichtungsstelle teilzunehmen.
         </p>
       </div>
+      )}
 
-      <!-- English (convenience translation) -->
-      <div data-lang-block="en">
+      {/* English (convenience translation) */}
+      {lang === 'en' && (
+      <div>
         <h1>Legal Notice</h1>
 
         <h2>Information pursuant to § 5 DDG</h2>
@@ -91,19 +106,12 @@ const description = 'Impressum / legal notice for Jami IT (Tareq Jami), Hamburg.
           is legally binding.
         </p>
       </div>
+      )}
     </article>
   </main>
 
   <script>
-    import { initControls } from '../lib/ui';
-
-    const titles = { en: 'Legal Notice — Tareq Jami', de: 'Impressum — Tareq Jami' };
-
-    document.addEventListener('langchange', (e) => {
-      const lang = (e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang;
-      document.title = titles[lang];
-    });
-
+    import { initControls } from '../../lib/ui';
     initControls();
   </script>
 </Base>

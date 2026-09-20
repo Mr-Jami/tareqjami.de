@@ -1,11 +1,22 @@
 // Bilingual content + render helpers for the one-page profile.
-// The same render functions are used to server-render the initial HTML
-// (in index.astro) and to re-render client-side when the language is toggled,
-// so there is a single source of truth for markup.
+// Every page exists once per language: the default language at the root
+// (/, /impressum/, …) and German under /de/ (see src/lib/routes.ts). The
+// render functions below produce the server-rendered HTML for one language;
+// nothing here runs in the browser.
 
 export type Lang = 'en' | 'de';
 export const LANGS: Lang[] = ['en', 'de'];
 export const DEFAULT_LANG: Lang = 'en';
+
+// Path prefix of a language: '' for the default language, '/de' for German.
+export function langPrefix(lang: Lang): string {
+  return lang === DEFAULT_LANG ? '' : `/${lang}`;
+}
+
+// The URL of a language-neutral path ('/impressum/') in the given language.
+export function localePath(lang: Lang, path: string): string {
+  return `${langPrefix(lang)}${path}`;
+}
 
 interface Role {
   title: string;
@@ -58,11 +69,12 @@ interface SiteData {
   ui: {
     downloadCv: string;
     cvUrl: string; // per-language PDF built by scripts/build-cv.mjs
-    langToggle: string; // label of the language you switch TO
-    langToggleAria: string;
     themeToggleAria: string;
     backToTop: string;
     watch: string; // CTA on talk recordings
+    home: string; // "← Home" link on subpages
+    imprint: string; // footer links to the legal pages
+    privacy: string;
   };
   nav: {
     about: string;
@@ -181,11 +193,12 @@ export const data: Record<Lang, SiteData> = {
     ui: {
       downloadCv: 'Download CV',
       cvUrl: '/tareq-jami-cv-en.pdf',
-      langToggle: 'DE',
-      langToggleAria: 'Switch to German',
       themeToggleAria: 'Toggle light/dark theme',
       backToTop: 'Back to top',
       watch: 'Watch on YouTube',
+      home: 'Home',
+      imprint: 'Imprint',
+      privacy: 'Privacy',
     },
     nav: {
       about: 'About',
@@ -401,11 +414,12 @@ export const data: Record<Lang, SiteData> = {
     ui: {
       downloadCv: 'Lebenslauf herunterladen',
       cvUrl: '/tareq-jami-cv-de.pdf',
-      langToggle: 'EN',
-      langToggleAria: 'Zu Englisch wechseln',
       themeToggleAria: 'Helles/dunkles Design umschalten',
       backToTop: 'Nach oben',
       watch: 'Auf YouTube ansehen',
+      home: 'Start',
+      imprint: 'Impressum',
+      privacy: 'Datenschutz',
     },
     nav: {
       about: 'Über mich',
@@ -814,8 +828,11 @@ export function renderSocials(): string {
   return `<ul class="socials" data-stagger>${items}</ul>`;
 }
 
-export function renderContact(d: SiteData): string {
+export function renderContact(lang: Lang): string {
+  const d = data[lang];
   const f = d.contact.form;
+  // The status messages ride along as data attributes so the submit handler
+  // in index.astro does not need this module in the browser.
   return `
     <h2 class="section-title" data-animate="title">${esc(d.sections.contact)}</h2>
     <div class="contact-grid">
@@ -828,9 +845,12 @@ export function renderContact(d: SiteData): string {
       class="contact-form"
       name="contact"
       method="POST"
-      action="/success"
+      action="${esc(localePath(lang, '/success/'))}"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
+      data-msg-sending="${esc(f.sending)}"
+      data-msg-success="${esc(f.success)}"
+      data-msg-error="${esc(f.error)}"
     >
       <input type="hidden" name="form-name" value="contact" />
       <p class="hp" aria-hidden="true">
@@ -850,7 +870,7 @@ export function renderContact(d: SiteData): string {
       </div>
       <label class="consent">
         <input type="checkbox" name="consent" value="yes" required />
-        <span>${esc(f.consent)} (<a href="/datenschutz/">${esc(f.privacyLabel)}</a>)</span>
+        <span>${esc(f.consent)} (<a href="${esc(localePath(lang, '/datenschutz/'))}">${esc(f.privacyLabel)}</a>)</span>
       </label>
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">${esc(f.send)}</button>
@@ -885,6 +905,6 @@ export function renderAll(lang: Lang): Record<string, string> {
     talks: renderTalks(d),
     skills: renderSkills(d),
     education: renderEducation(d),
-    contact: renderContact(d),
+    contact: renderContact(lang),
   };
 }

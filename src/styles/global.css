@@ -194,7 +194,7 @@ h1, h2, h3, h4 {
   margin-left: 1rem;
 }
 
-/* Segmented language toggle (EN / DE) */
+/* Segmented language switch (EN / DE): links to the other language's URL */
 .seg {
   position: relative;
   display: inline-flex;
@@ -220,12 +220,15 @@ html[data-lang='de'] .seg::before {
 .seg-opt {
   position: relative;
   z-index: 1;
+  display: inline-block;
   min-width: 38px;
   padding: 0.26rem 0.66rem;
   border: 0;
   background: transparent;
   border-radius: 999px;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 700;
@@ -233,9 +236,11 @@ html[data-lang='de'] .seg::before {
   color: var(--muted);
   transition: color 0.2s ease;
 }
-html[data-lang='en'] .seg-opt[data-lang-opt='en'],
-html[data-lang='de'] .seg-opt[data-lang-opt='de'] {
+.seg-opt[aria-current='page'] {
   color: var(--accent-contrast);
+}
+.seg-opt:hover {
+  text-decoration: none;
 }
 
 /* Sliding theme switch */
@@ -938,12 +943,6 @@ html[data-theme='dark'] .form-status.err {
 }
 .site-footer a:hover {
   color: var(--accent);
-}
-
-/* ---------- Language-conditional blocks (static pages) ---------- */
-html[data-lang='en'] [data-lang-block='de'],
-html[data-lang='de'] [data-lang-block='en'] {
-  display: none;
 }
 
 /* ---------- Legal / imprint pages ---------- */

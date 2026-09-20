@@ -1,23 +1,35 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
+import { data, localePath } from '../../lib/i18n';
+import type { LangProps } from '../../lib/routes';
+export { getStaticPaths } from '../../lib/routes';
 
-// German is the legally authoritative version; English is a convenience translation.
-const title = 'Datenschutzerklärung — Tareq Jami';
-const description =
-  'Privacy policy / Datenschutzerklärung for tareqjami.de (Jami IT, Tareq Jami).';
+// German is the legally authoritative version; English is a convenience
+// translation. Both live in this file; the route renders one of them.
+const { lang } = Astro.props as LangProps;
+const d = data[lang];
+const meta = {
+  de: {
+    title: 'Datenschutzerklärung — Tareq Jami',
+    description: 'Datenschutzerklärung für tareqjami.de (Jami IT, Tareq Jami).',
+  },
+  en: {
+    title: 'Privacy Policy — Tareq Jami',
+    description: 'Privacy policy for tareqjami.de (Jami IT, Tareq Jami).',
+  },
+}[lang];
 ---
 
-<Base title={title} description={description} canonical="https://tareqjami.de/datenschutz/">
+<Base lang={lang} path="/datenschutz/" title={meta.title} description={meta.description}>
   <nav slot="nav" class="nav">
-    <a href="/" class="nav-link"
-      >← <span data-lang-block="en">Home</span><span data-lang-block="de">Start</span></a
-    >
+    <a href={localePath(lang, '/')} class="nav-link">← {d.ui.home}</a>
   </nav>
 
   <main id="main">
     <article class="legal">
-      <!-- German (authoritative) -->
-      <div data-lang-block="de">
+      {/* German (authoritative) */}
+      {lang === 'de' && (
+      <div>
         <h1>Datenschutzerklärung</h1>
 
         <h2>1. Verantwortlicher</h2>
@@ -80,7 +92,7 @@ const description =
 
         <h2>5. Lokale Speicherung (Local Storage)</h2>
         <p>
-          Zur Speicherung Ihrer Einstellungen (Farbschema „hell/dunkel" und Sprache)
+          Zur Speicherung Ihrer Einstellung des Farbschemas („hell/dunkel")
           nutzen wir den lokalen Speicher Ihres Browsers (Local Storage). Diese
           Informationen verbleiben auf Ihrem Endgerät und werden nicht an uns
           übertragen. Sie sind für die von Ihnen gewählte Funktion technisch
@@ -142,9 +154,11 @@ const description =
           Angebots anzupassen.
         </p>
       </div>
+      )}
 
-      <!-- English (convenience translation) -->
-      <div data-lang-block="en">
+      {/* English (convenience translation) */}
+      {lang === 'en' && (
+      <div>
         <h1>Privacy Policy</h1>
 
         <h2>1. Controller</h2>
@@ -204,7 +218,7 @@ const description =
 
         <h2>5. Local storage</h2>
         <p>
-          To save your preferences (light/dark colour scheme and language) we use
+          To save your colour scheme preference (light/dark) we use
           your browser's local storage. This information remains on your device and
           is not transmitted to us. It is technically necessary for the function you
           have chosen (§ 25(2) TTDSG); no consent is required for this. You can
@@ -265,20 +279,12 @@ const description =
           is legally binding.
         </p>
       </div>
+      )}
     </article>
   </main>
 
   <script>
-    import { initControls } from '../lib/ui';
-
-    const titles = {
-      en: 'Privacy Policy — Tareq Jami',
-      de: 'Datenschutzerklärung — Tareq Jami',
-    };
-    document.addEventListener('langchange', (e) => {
-      document.title = titles[(e as CustomEvent<{ lang: 'en' | 'de' }>).detail.lang];
-    });
-
+    import { initControls } from '../../lib/ui';
     initControls();
   </script>
 </Base>

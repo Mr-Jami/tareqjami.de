@@ -3,16 +3,22 @@
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
-import { data, DEFAULT_LANG, AVATAR_PNG_URL } from '../lib/i18n';
+import { data, LANGS, DEFAULT_LANG, localePath, AVATAR_PNG_URL, type Lang } from '../lib/i18n';
 
 interface Props {
+  lang: Lang;
+  path: string; // language-neutral path of this page, e.g. '/impressum/'
   title: string;
   description: string;
-  canonical?: string;
+  noindex?: boolean; // e.g. the form success page
 }
-const { title, description, canonical = 'https://tareqjami.de/' } = Astro.props;
-const lang = DEFAULT_LANG;
+const { lang, path, title, description, noindex = false } = Astro.props;
 const d = data[lang];
+
+const SITE = 'https://tareqjami.de';
+const canonical = SITE + localePath(lang, path);
+// Every page exists in every language; x-default is the unprefixed default.
+const alternates = LANGS.map((l) => ({ hreflang: l, href: SITE + localePath(l, path) }));
 
 // Entity graph for search engines and answer engines: this site is the personal
 // profile, jami-it.de is the freelance practice run under the same name. Stating
@@ -91,13 +97,16 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Tareq Jami" />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={SITE + localePath(DEFAULT_LANG, path)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
-    <!-- Apply saved theme + language before paint to avoid flash -->
+    <!-- Apply the saved theme before paint to avoid a flash -->
     <script is:inline>
       (function () {
         try {
@@ -108,10 +117,6 @@ const jsonLd = {
               : 'light';
           }
           document.documentElement.setAttribute('data-theme', t);
-          var l = localStorage.getItem('lang');
-          if (l !== 'en' && l !== 'de') l = 'en';
-          document.documentElement.setAttribute('lang', l);
-          document.documentElement.setAttribute('data-lang', l);
           // Marks JS availability so CSS may hide elements for animated reveals.
           document.documentElement.classList.add('js');
         } catch (e) {}
@@ -122,13 +127,14 @@ const jsonLd = {
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" id="top">
-      <a href="/" class="brand">Tareq Jami</a>
+      <a href={localePath(lang, '/')} class="brand">Tareq Jami</a>
       <slot name="nav" />
       <div class="controls">
-        <div class="seg" id="lang-seg" role="group" aria-label="Language / Sprache">
-          <button class="seg-opt" type="button" data-lang-opt="en" aria-label="Switch to English">EN</button>
-          <button class="seg-opt" type="button" data-lang-opt="de" aria-label="Auf Deutsch umschalten">DE</button>
-        </div>
+        <!-- Language switch: plain links to the same page in the other language -->
+        <nav class="seg" aria-label="Language / Sprache">
+          <a class="seg-opt" href={localePath('en', path)} hreflang="en" lang="en" aria-label="English" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+          <a class="seg-opt" href={localePath('de', path)} hreflang="de" lang="de" aria-label="Deutsch" aria-current={lang === 'de' ? 'page' : undefined}>DE</a>
+        </nav>
         <button
           class="theme-switch"
           id="theme-btn"
@@ -153,16 +159,9 @@ const jsonLd = {
       <p>
         © <span id="year"></span> Tareq Jami ·
         <a href="https://jami-it.de" rel="noopener">Jami IT</a> ·
-        <a href="/impressum/"
-          ><span data-lang-block="en">Imprint</span><span data-lang-block="de"
-            >Impressum</span
-          ></a
-        > ·
-        <a href="/datenschutz/"
-          ><span data-lang-block="en">Privacy</span><span data-lang-block="de"
-            >Datenschutz</span
-          ></a
-        > · <a href="#top">↑</a>
+        <a href={localePath(lang, '/impressum/')}>{d.ui.imprint}</a> ·
+        <a href={localePath(lang, '/datenschutz/')}>{d.ui.privacy}</a> ·
+        <a href="#top" aria-label={d.ui.backToTop}>↑</a>
       </p>
     </footer>
   </body>
