@@ -253,8 +253,8 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Contact',
     },
     about: [
-      'Fullstack Software Engineer with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET. Currently Lead Frontend Engineer at Tesla, responsible for the architecture and technical direction of internal tooling projects.',
-      'Focus on RESTful APIs, relational data modelling, CI/CD and cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator and maintainer of the open-source library ng-openapi with 10,000+ npm downloads per month. Quality-minded through code reviews, automated testing and mentoring; regularly gives training sessions and talks for developers.',
+      'Tareq Jami is a Fullstack Software Engineer in Hamburg, Germany, with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET: Lead Frontend Engineer at Tesla, responsible for the architecture and technical direction of internal tooling projects, creator and maintainer of the open-source library ng-openapi (10,000+ npm downloads per month), and speaker at the HH.js meetup on typed API clients. Client projects run through the freelance practice Jami IT.',
+      'Focus on RESTful APIs, relational data modelling, CI/CD and cloud (Azure, AWS, Docker, Kubernetes, Terraform). Quality-minded through code reviews, automated testing and mentoring; regularly gives training sessions and talks for developers.',
     ],
     freelance: {
       intro:
@@ -503,8 +503,8 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Kontakt',
     },
     about: [
-      'Fullstack Software Engineer mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET. Aktuell Lead Frontend Engineer bei Tesla, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte.',
-      'Schwerpunkte: RESTful APIs, relationale Datenmodellierung, CI/CD und Cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator und Maintainer der Open-Source-Bibliothek ng-openapi mit über 10.000 npm-Downloads pro Monat. Qualitätsbewusst durch Code Reviews, automatisiertes Testing und Mentoring; regelmäßig Schulungen und Vorträge für Entwicklerinnen und Entwickler.',
+      'Tareq Jami ist Fullstack Software Engineer aus Hamburg mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET: Lead Frontend Engineer bei Tesla, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte, Creator und Maintainer der Open-Source-Bibliothek ng-openapi (über 10.000 npm-Downloads pro Monat) und Speaker beim HH.js-Meetup zu typisierten API-Clients. Kundenprojekte laufen über die freiberufliche Praxis Jami IT.',
+      'Schwerpunkte: RESTful APIs, relationale Datenmodellierung, CI/CD und Cloud (Azure, AWS, Docker, Kubernetes, Terraform). Qualitätsbewusst durch Code Reviews, automatisiertes Testing und Mentoring; regelmäßig Schulungen und Vorträge für Entwicklerinnen und Entwickler.',
     ],
     freelance: {
       intro:
