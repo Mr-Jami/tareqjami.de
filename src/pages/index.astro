@@ -54,7 +54,9 @@ const r = renderAll(lang);
       }
       // If the avatar image fails, drop it so the initials show through.
       const avatar = document.querySelector<HTMLImageElement>('.avatar-img');
-      if (avatar) avatar.addEventListener('error', () => avatar.remove(), { once: true });
+      if (avatar) {
+        avatar.addEventListener('error', () => (avatar.closest('picture') ?? avatar).remove(), { once: true });
+      }
       const d = data[lang];
       document.title = d.meta.title;
       if (desc) desc.content = d.meta.description;

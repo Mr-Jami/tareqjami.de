@@ -164,8 +164,12 @@ const SOCIALS: Social[] = [
 ];
 
 // Self-hosted avatar (downloaded from Gravatar) — no third-party request.
-// To refresh it, re-download the Gravatar into public/profile.png.
-const AVATAR_URL = '/profile.png';
+// To refresh it, re-download the Gravatar into src/assets/profile.png and run
+// `npm run avatar`, which writes the variants below (see scripts/build-avatar.mjs).
+// It is the LCP element on mobile, hence the modern formats and fetchpriority.
+export const AVATAR_PNG_URL = '/profile-400.png';
+const AVATAR_AVIF_SRCSET = '/profile-220.avif 220w, /profile-400.avif 400w';
+const AVATAR_WEBP_SRCSET = '/profile-220.webp 220w, /profile-400.webp 400w';
 
 export const data: Record<Lang, SiteData> = {
   en: {
@@ -301,7 +305,7 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         name: 'Simple Shot Timer',
-        url: '/apps/simpleshottimer',
+        url: '/apps/simpleshottimer/',
         role: 'Flutter app · Google Play',
         period: 'May 2026 - Present',
         bullets: [
@@ -521,7 +525,7 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         name: 'Simple Shot Timer',
-        url: '/apps/simpleshottimer',
+        url: '/apps/simpleshottimer/',
         role: 'Flutter-App · Google Play',
         period: 'Mai 2026 - heute',
         bullets: [
@@ -649,7 +653,11 @@ export function renderHero(d: SiteData): string {
             <circle class="ring-dash" cx="100" cy="100" r="97" />
           </svg>
           <div class="avatar">
-            <img class="avatar-img" src="${AVATAR_URL}" alt="${esc(d.hero.name)}" width="220" height="220" loading="eager" decoding="async" />
+            <picture class="avatar-picture">
+              <source type="image/avif" srcset="${AVATAR_AVIF_SRCSET}" sizes="220px" />
+              <source type="image/webp" srcset="${AVATAR_WEBP_SRCSET}" sizes="220px" />
+              <img class="avatar-img" src="${AVATAR_PNG_URL}" alt="${esc(d.hero.name)}" width="220" height="220" loading="eager" decoding="async" fetchpriority="high" />
+            </picture>
             <span class="avatar-fallback" aria-hidden="true">${esc(initials(d.hero.name))}</span>
           </div>
         </div>
@@ -842,7 +850,7 @@ export function renderContact(d: SiteData): string {
       </div>
       <label class="consent">
         <input type="checkbox" name="consent" value="yes" required />
-        <span>${esc(f.consent)} (<a href="/datenschutz">${esc(f.privacyLabel)}</a>)</span>
+        <span>${esc(f.consent)} (<a href="/datenschutz/">${esc(f.privacyLabel)}</a>)</span>
       </label>
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">${esc(f.send)}</button>

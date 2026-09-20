@@ -449,6 +449,9 @@ main {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 60px var(--accent-glow);
 }
+.avatar-picture {
+  display: contents;
+}
 .avatar-img {
   position: absolute;
   inset: 0;
