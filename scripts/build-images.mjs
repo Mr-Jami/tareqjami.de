@@ -9,6 +9,8 @@
 // 2. Open Graph image (1200×630) for link previews on LinkedIn, Slack etc.:
 //    the avatar on the site's dark theme with name, role and domain. Text is
 //    rendered from an SVG, so it uses the fonts installed on this machine.
+// 3. Simple Shot Timer screenshots (src/assets/simpleshottimer/*.png, the
+//    1800×3000 Play Store listing images) at 520/1040 px as AVIF and WebP.
 
 import { mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -75,5 +77,17 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
   </g>
 </svg>`;
 await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(resolve(OUT, 'og-image.png'));
+
+// --- App screenshots -------------------------------------------------------
+const SHOTS_SRC = resolve(ROOT, 'src/assets/simpleshottimer');
+const SHOTS_OUT = resolve(OUT, 'apps/simpleshottimer');
+mkdirSync(SHOTS_OUT, { recursive: true });
+for (const name of ['detect', 'settings', 'review']) {
+  for (const width of [520, 1040]) {
+    const base = sharp(resolve(SHOTS_SRC, `${name}.png`)).resize(width);
+    await base.clone().avif({ quality: 55 }).toFile(resolve(SHOTS_OUT, `${name}-${width}.avif`));
+    await base.clone().webp({ quality: 78 }).toFile(resolve(SHOTS_OUT, `${name}-${width}.webp`));
+  }
+}
 
 console.log(`images written to ${OUT}`);

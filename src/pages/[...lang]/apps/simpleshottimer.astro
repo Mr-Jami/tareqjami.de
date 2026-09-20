@@ -5,34 +5,132 @@ import { appNode } from '../../../lib/schema';
 import type { LangProps } from '../../../lib/routes';
 export { getStaticPaths } from '../../../lib/routes';
 
-// App landing page for "Simple Shot Timer": logo, tagline and store buttons.
+// Landing page for "Simple Shot Timer": store buttons, screenshots, what the
+// app does, who it is for, privacy, and the facts of the current release.
 // Deliberately no user-agent redirect to Google Play: Googlebot Smartphone's
 // UA contains "Android", so a page that navigates away before it renders gets
 // indexed as the Play Store listing instead of as this page. The Play badge
 // is the primary CTA instead.
 const { lang } = Astro.props as LangProps;
 const d = data[lang];
+
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
+const REPO_URL = 'https://github.com/Mr-Jami/simple-shot-timer';
+const ICON = '/apps/simpleshottimer/icon.png';
+const PATH = '/apps/simpleshottimer/';
+// Current release — keep in step with the Play Store listing / CHANGELOG.md.
+const VERSION = '1.6.0';
+const RELEASED = '2026-07-05';
+
+// Screenshots: the Play Store listing images (src/assets/simpleshottimer),
+// built by `npm run images`. Captions are baked into the images in English,
+// so the alt text carries them for screen readers and the German page.
+const SHOTS = ['detect', 'settings', 'review'] as const;
+const shotSrc = (name: string, ext: string) =>
+  `/apps/simpleshottimer/${name}-520.${ext} 520w, /apps/simpleshottimer/${name}-1040.${ext} 1040w`;
+
 const t = {
   en: {
-    title: 'Simple Shot Timer',
-    description: 'Simple Shot Timer — a focused interval / shot timer app. Get it on Google Play.',
+    title: 'Simple Shot Timer — free shot timer app for Android',
+    description:
+      'Simple Shot Timer: free Android shot timer for dry-fire and live-fire practice. Par drills, splits, history and CSV export. No ads, no tracking, no account.',
     tagline: 'Practical shot timer: par drills, splits, history & CSV. No ads, no tracking.',
     badgeAria: 'Get Simple Shot Timer on Google Play',
     soon: 'Coming soon',
+    shots: {
+      detect: 'The timer listens for each shot and times it automatically',
+      settings: 'Settings: drill mode, random start delay, par time and beep volume',
+      review: 'Shot-by-shot review with splits, fastest and slowest, and your own notes',
+    },
+    features: {
+      heading: 'What it does',
+      items: [
+        ['Three drill modes', 'Standard (open string), Par (par time × cycles with optional rest) and Stage (single window up to 200 s).'],
+        ['Start delay', 'Instant, fixed, or random within a min/max range — with a live countdown so you know the timer is running.'],
+        ['Shot detection', 'Live microphone stream with peak detection, echo filter and beep blanking. A mic test screen with level meter lets you dial in sensitivity before going hot; manual shot input is always available.'],
+        ['History & review', 'Every string is saved automatically. Review splits, fastest, slowest and average; add a label, notes and penalties.'],
+        ['CSV export', 'Export one string or the whole history through the system share sheet — to email, cloud storage or a spreadsheet.'],
+        ['Made for the range', 'Screen flash on beep for noisy or ear-pro-heavy environments, optional haptics, keep-screen-awake, and a monochrome Material 3 theme with light, dark and high-contrast options.'],
+      ],
+    },
+    audience: {
+      heading: 'Who it is for',
+      text: 'Practical shooters who want fast feedback and accurate splits — at the range, in the dojo, or in a basement dry-fire setup. Built for repeatable drill work, not for a sales funnel: free, lean, no upsells.',
+    },
+    privacy: {
+      heading: 'Privacy',
+      items: [
+        '100% on-device: no account, no cloud, no analytics, no ads, no tracking.',
+        'The microphone is used live, in memory, only during an active string. No audio is recorded or transmitted.',
+        'Permissions: microphone (shot detection, requested on first start), vibration (optional haptics), wake lock (keeps the screen on during a string).',
+      ],
+    },
+    facts: {
+      heading: 'Details',
+      version: 'Version',
+      released: 'Released',
+      platform: 'Platform',
+      platformValue: 'Android · free',
+      languages: 'Languages',
+      languagesValue: 'English, German, French, Spanish, Russian',
+      source: 'Source code',
+      sourceValue: 'Open source on GitHub (Apache-2.0)',
+    },
   },
   de: {
-    title: 'Simple Shot Timer',
-    description: 'Simple Shot Timer — ein fokussierter Intervall-/Shot-Timer. Jetzt bei Google Play.',
+    title: 'Simple Shot Timer — kostenlose Shot-Timer-App für Android',
+    description:
+      'Simple Shot Timer: kostenloser Android-Shot-Timer für Trocken- und Schießtraining. Par-Übungen, Splits, Verlauf und CSV-Export. Keine Werbung, kein Tracking, kein Konto.',
     tagline: 'Praktischer Shot-Timer: Par-Übungen, Splits, Verlauf & CSV. Keine Werbung, kein Tracking.',
     badgeAria: 'Simple Shot Timer bei Google Play laden',
     soon: 'Demnächst',
+    shots: {
+      detect: 'Der Timer hört jeden Schuss mit und stoppt ihn automatisch',
+      settings: 'Einstellungen: Übungsmodus, zufällige Startverzögerung, Par-Zeit und Piepton-Lautstärke',
+      review: 'Auswertung Schuss für Schuss mit Splits, schnellstem und langsamstem Schuss und eigenen Notizen',
+    },
+    features: {
+      heading: 'Was die App kann',
+      items: [
+        ['Drei Übungsmodi', 'Standard (offene Serie), Par (Par-Zeit × Durchgänge mit optionaler Pause) und Stage (ein Zeitfenster bis 200 s).'],
+        ['Startverzögerung', 'Sofort, fest oder zufällig in einem Min/Max-Bereich – mit Live-Countdown, damit klar ist, dass der Timer läuft.'],
+        ['Schusserkennung', 'Live-Mikrofonstream mit Spitzenerkennung, Echo-Filter und Ausblendung des Pieptons. Ein Mikrofon-Test mit Pegelanzeige hilft, die Empfindlichkeit vorab einzustellen; Schüsse lassen sich jederzeit manuell eintragen.'],
+        ['Verlauf & Auswertung', 'Jede Serie wird automatisch gespeichert. Splits, schnellster, langsamster und durchschnittlicher Schuss; Bezeichnung, Notizen und Strafen pro Serie.'],
+        ['CSV-Export', 'Eine Serie oder den ganzen Verlauf über das System-Teilen-Menü exportieren – per E-Mail, in die Cloud oder in eine Tabelle.'],
+        ['Gemacht für den Stand', 'Bildschirmblitz beim Piepton für laute Umgebungen und Gehörschutz, optionale Vibration, Bildschirm bleibt an, monochromes Material-3-Design mit hellem, dunklem und kontrastreichem Modus.'],
+      ],
+    },
+    audience: {
+      heading: 'Für wen',
+      text: 'Sportschützen, die schnelles Feedback und genaue Splits wollen – auf dem Stand, im Dojo oder beim Trockentraining im Keller. Gebaut für wiederholbare Übungen, nicht für einen Verkaufstrichter: kostenlos, schlank, ohne Upsells.',
+    },
+    privacy: {
+      heading: 'Datenschutz',
+      items: [
+        '100 % auf dem Gerät: kein Konto, keine Cloud, keine Analyse, keine Werbung, kein Tracking.',
+        'Das Mikrofon wird nur während einer laufenden Serie live im Speicher genutzt. Es wird nichts aufgezeichnet oder übertragen.',
+        'Berechtigungen: Mikrofon (Schusserkennung, beim ersten Start abgefragt), Vibration (optional), Wake-Lock (Bildschirm bleibt während einer Serie an).',
+      ],
+    },
+    facts: {
+      heading: 'Details',
+      version: 'Version',
+      released: 'Veröffentlicht',
+      platform: 'Plattform',
+      platformValue: 'Android · kostenlos',
+      languages: 'Sprachen',
+      languagesValue: 'Englisch, Deutsch, Französisch, Spanisch, Russisch',
+      source: 'Quellcode',
+      sourceValue: 'Open Source auf GitHub (Apache-2.0)',
+    },
   },
 }[lang];
 
-const PLAY_URL =
-  'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
-const ICON = '/apps/simpleshottimer/icon.png';
-const PATH = '/apps/simpleshottimer/';
+const releasedLabel = new Date(RELEASED).toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <Base
@@ -40,7 +138,19 @@ const PATH = '/apps/simpleshottimer/';
   path={PATH}
   title={t.title}
   description={t.description}
-  extraSchema={[appNode({ path: PATH, lang, description: t.tagline, playUrl: PLAY_URL, icon: ICON })]}>
+  extraSchema={[
+    appNode({
+      path: PATH,
+      lang,
+      description: t.description,
+      playUrl: PLAY_URL,
+      icon: ICON,
+      version: VERSION,
+      datePublished: RELEASED,
+      screenshots: SHOTS.map((s) => `/apps/simpleshottimer/${s}-1040.webp`),
+      repo: REPO_URL,
+    }),
+  ]}>
   <nav slot="nav" class="nav">
     <a href={localePath(lang, '/')} class="nav-link">← {d.ui.home}</a>
   </nav>
@@ -88,12 +198,74 @@ const PATH = '/apps/simpleshottimer/';
         </span>
       </div>
     </section>
+
+    <section class="app-section">
+      <ul class="shots">
+        {SHOTS.map((name) => (
+          <li>
+            <picture>
+              <source type="image/avif" srcset={shotSrc(name, 'avif')} sizes="(max-width: 640px) 80vw, 300px" />
+              <img
+                src={`/apps/simpleshottimer/${name}-520.webp`}
+                srcset={shotSrc(name, 'webp')}
+                sizes="(max-width: 640px) 80vw, 300px"
+                alt={t.shots[name]}
+                width="520"
+                height="867"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="app-section prose">
+      <h2>{t.features.heading}</h2>
+      <dl class="feature-list">
+        {t.features.items.map(([name, desc]) => (
+          <div class="feature">
+            <dt>{name}</dt>
+            <dd>{desc}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="app-section prose">
+      <h2>{t.audience.heading}</h2>
+      <p>{t.audience.text}</p>
+    </section>
+
+    <section class="app-section prose">
+      <h2>{t.privacy.heading}</h2>
+      <ul class="bullets">
+        {t.privacy.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="app-section prose">
+      <h2>{t.facts.heading}</h2>
+      <dl class="facts">
+        <div><dt>{t.facts.version}</dt><dd>{VERSION}</dd></div>
+        <div><dt>{t.facts.released}</dt><dd><time datetime={RELEASED}>{releasedLabel}</time></dd></div>
+        <div><dt>{t.facts.platform}</dt><dd>{t.facts.platformValue}</dd></div>
+        <div><dt>{t.facts.languages}</dt><dd>{t.facts.languagesValue}</dd></div>
+        <div><dt>{t.facts.source}</dt><dd><a href={REPO_URL} target="_blank" rel="noopener">{t.facts.sourceValue} <span class="ext">↗</span></a></dd></div>
+      </dl>
+      <p class="store-buttons store-buttons-bottom">
+        <a class="store-badge" href={PLAY_URL} target="_blank" rel="noopener" aria-label={t.badgeAria}>
+          <img src="/apps/simpleshottimer/gplay-en.png" alt="Get it on Google Play" width="180" height="70" loading="lazy" />
+        </a>
+      </p>
+    </section>
   </main>
 
   <style>
     .app-landing {
       max-width: 520px;
-      margin: clamp(2.5rem, 8vh, 5rem) auto;
+      margin: clamp(2.5rem, 8vh, 5rem) auto 0;
       padding: 0 1.25rem;
       text-align: center;
     }
@@ -169,6 +341,85 @@ const PATH = '/apps/simpleshottimer/';
       font-size: 0.7rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+    }
+
+    /* Content below the store buttons */
+    .app-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: clamp(2rem, 5vw, 3.5rem) 1.25rem 0;
+    }
+    .app-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 0.9rem;
+    }
+    .app-section:last-child {
+      padding-bottom: clamp(3rem, 8vw, 5rem);
+    }
+    .shots {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .shots li {
+      flex: 0 1 300px;
+      min-width: 0;
+    }
+    .shots img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 640px) {
+      .shots {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 0.5rem;
+        margin: 0 -1.25rem;
+        padding-inline: 1.25rem;
+      }
+      .shots li {
+        flex: 0 0 80vw;
+        scroll-snap-align: center;
+      }
+    }
+    .feature-list {
+      margin: 0;
+      display: grid;
+      gap: 1.1rem;
+    }
+    .feature dt {
+      font-weight: 700;
+    }
+    .feature dd {
+      margin: 0.15rem 0 0;
+      color: var(--muted);
+    }
+    .facts {
+      margin: 0 0 1.6rem;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.4rem 1.4rem;
+    }
+    .facts div {
+      display: contents;
+    }
+    .facts dt {
+      color: var(--muted);
+    }
+    .facts dd {
+      margin: 0;
+    }
+    .store-buttons-bottom {
+      justify-content: flex-start;
+      margin: 0;
     }
   </style>
 
