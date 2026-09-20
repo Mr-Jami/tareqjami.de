@@ -177,7 +177,7 @@ const SOCIALS: Social[] = [
 
 // Self-hosted avatar (downloaded from Gravatar) — no third-party request.
 // To refresh it, re-download the Gravatar into src/assets/profile.png and run
-// `npm run avatar`, which writes the variants below (see scripts/build-avatar.mjs).
+// `npm run images`, which writes the variants below (see scripts/build-images.mjs).
 // It is the LCP element on mobile, hence the modern formats and fetchpriority.
 export const AVATAR_PNG_URL = '/profile-400.png';
 const AVATAR_AVIF_SRCSET = '/profile-220.avif 220w, /profile-400.avif 400w';
@@ -186,9 +186,9 @@ const AVATAR_WEBP_SRCSET = '/profile-220.webp 220w, /profile-400.webp 400w';
 export const data: Record<Lang, SiteData> = {
   en: {
     meta: {
-      title: 'Tareq Jami · Software Engineer',
+      title: 'Tareq Jami — Angular & .NET Engineer in Hamburg',
       description:
-        'Tareq Jami, Fullstack Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla, Angular and .NET developer, and open-source maintainer of ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer in Hamburg: Lead Frontend Engineer at Tesla, Angular & .NET developer, maintainer of the open-source ng-openapi.',
     },
     ui: {
       downloadCv: 'Download CV',
@@ -407,9 +407,9 @@ export const data: Record<Lang, SiteData> = {
 
   de: {
     meta: {
-      title: 'Tareq Jami · Softwareentwickler',
+      title: 'Tareq Jami — Angular & .NET Entwickler, Hamburg',
       description:
-        'Tareq Jami, Fullstack Software Engineer aus Hamburg. Lead Frontend Engineer bei Tesla, Angular- und .NET-Entwickler und Open-Source-Maintainer von ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer aus Hamburg: Lead Frontend Engineer bei Tesla, Angular- & .NET-Entwickler, Maintainer von ng-openapi (Open Source).',
     },
     ui: {
       downloadCv: 'Lebenslauf herunterladen',

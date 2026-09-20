@@ -20,9 +20,9 @@ npm run preview  # preview the production build
 .
 ├── public/                 # static files served as-is (e.g. tareq-jami-cv-en.pdf)
 ├── scripts/build-cv.mjs    # renders the CV PDFs from src/lib/i18n.ts
-├── scripts/build-avatar.mjs # writes the hero avatar variants from src/assets/profile.png
+├── scripts/build-images.mjs # writes the avatar variants + OG image from src/assets/profile.png
 ├── src/
-│   ├── assets/profile.png  # avatar source (npm run avatar → public/profile-*.{avif,webp,png})
+│   ├── assets/profile.png  # avatar source (npm run images → public/profile-*, og-image.png)
 │   ├── layouts/Base.astro  # head (canonical, hreflang, JSON-LD), header, footer
 │   ├── lib/i18n.ts         # bilingual content + render helpers
 │   ├── lib/routes.ts       # getStaticPaths: one build per language

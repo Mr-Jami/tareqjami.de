@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "cv": "node scripts/build-cv.mjs",
-    "avatar": "node scripts/build-avatar.mjs"
+    "images": "node scripts/build-images.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
