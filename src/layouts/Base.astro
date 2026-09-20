@@ -3,7 +3,7 @@
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
-import { data, DEFAULT_LANG } from '../lib/i18n';
+import { data, DEFAULT_LANG, AVATAR_PNG_URL } from '../lib/i18n';
 
 interface Props {
   title: string;
@@ -17,6 +17,10 @@ const d = data[lang];
 // Entity graph for search engines and answer engines: this site is the personal
 // profile, jami-it.de is the freelance practice run under the same name. Stating
 // the relation explicitly keeps the two domains from reading as unrelated.
+// Job title and skills are taken from the same data that renders the page, so
+// the structured data cannot contradict the visible text.
+const currentRole = d.experience[0].roles[0];
+const knowsAbout = d.skills.flatMap((group) => group.items);
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -25,13 +29,27 @@ const jsonLd = {
       '@id': 'https://tareqjami.de/#person',
       name: 'Tareq Jami',
       url: 'https://tareqjami.de/',
-      jobTitle: 'Software Engineer',
+      image: `https://tareqjami.de${AVATAR_PNG_URL}`,
+      jobTitle: currentRole.title,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Hamburg',
+        postalCode: '22047',
         addressCountry: 'DE',
       },
-      worksFor: { '@id': 'https://jami-it.de/#organization' },
+      // Employee at Tesla (current role) and founder of the freelance practice.
+      worksFor: [
+        { '@type': 'Organization', name: 'Tesla', url: 'https://www.tesla.com' },
+        { '@id': 'https://jami-it.de/#organization' },
+      ],
+      alumniOf: [
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'Hochschule Trier',
+          url: 'https://www.hochschule-trier.de',
+        },
+      ],
+      knowsAbout,
       sameAs: [
         'https://jami-it.de',
         'https://github.com/Mr-Jami',
@@ -135,12 +153,12 @@ const jsonLd = {
       <p>
         © <span id="year"></span> Tareq Jami ·
         <a href="https://jami-it.de" rel="noopener">Jami IT</a> ·
-        <a href="/impressum"
+        <a href="/impressum/"
           ><span data-lang-block="en">Imprint</span><span data-lang-block="de"
             >Impressum</span
           ></a
         > ·
-        <a href="/datenschutz"
+        <a href="/datenschutz/"
           ><span data-lang-block="en">Privacy</span><span data-lang-block="de"
             >Datenschutz</span
           ></a
