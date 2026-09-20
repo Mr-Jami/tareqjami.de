@@ -5,7 +5,7 @@ Personal one-page developer profile for Tareq Jami. Built with [Astro](https://a
 ## Status
 ✅ One-page profile generated from the CV, with a light/dark theme toggle and German/English language toggle (both persisted to `localStorage`).
 
-Content lives in `src/lib/i18n.ts` (bilingual data + render helpers) and is server-rendered in `src/pages/index.astro`, so the page works without JavaScript and is SEO-friendly. The downloadable CV lives at `public/tareq-jami-cv.pdf` (served at `/tareq-jami-cv.pdf`); to update it, replace that file.
+Content lives in `src/lib/i18n.ts` (bilingual data + render helpers) and is server-rendered in `src/pages/index.astro`, so the page works without JavaScript and is SEO-friendly. The downloadable CVs (`public/tareq-jami-cv-en.pdf`, `public/tareq-jami-cv-de.pdf`) are generated from the same data: after changing `i18n.ts`, run `npm run cv` (needs Microsoft Edge, prints headless) and commit the PDFs.
 
 ## Develop
 ```bash
@@ -18,7 +18,8 @@ npm run preview  # preview the production build
 ## Structure
 ```
 .
-├── public/                 # static files served as-is (e.g. tareq-jami-cv.pdf)
+├── public/                 # static files served as-is (e.g. tareq-jami-cv-en.pdf)
+├── scripts/build-cv.mjs    # renders the CV PDFs from src/lib/i18n.ts
 ├── src/
 │   ├── lib/i18n.ts         # bilingual content + render helpers
 │   ├── styles/global.css   # styles (theme tokens, layout)

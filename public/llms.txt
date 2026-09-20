@@ -18,7 +18,8 @@ the freelance practice and https://tareqjami.de for the personal profile.
 
 - [Homepage](https://tareqjami.de/): about, experience, open source, skills,
   education and contact form, in English and German.
-- [CV (PDF)](https://tareqjami.de/tareq-jami-cv.pdf): full curriculum vitae.
+- [CV, English (PDF)](https://tareqjami.de/tareq-jami-cv-en.pdf): full curriculum vitae.
+- [Lebenslauf, German (PDF)](https://tareqjami.de/tareq-jami-cv-de.pdf): the same CV in German.
 
 ## Practice
 

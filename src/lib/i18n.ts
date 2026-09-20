@@ -57,6 +57,7 @@ interface SiteData {
   meta: { title: string; description: string };
   ui: {
     downloadCv: string;
+    cvUrl: string; // per-language PDF built by scripts/build-cv.mjs
     langToggle: string; // label of the language you switch TO
     langToggleAria: string;
     themeToggleAria: string;
@@ -175,6 +176,7 @@ export const data: Record<Lang, SiteData> = {
     },
     ui: {
       downloadCv: 'Download CV',
+      cvUrl: '/tareq-jami-cv-en.pdf',
       langToggle: 'DE',
       langToggleAria: 'Switch to German',
       themeToggleAria: 'Toggle light/dark theme',
@@ -194,7 +196,7 @@ export const data: Record<Lang, SiteData> = {
       name: NAME,
       role: 'Fullstack Software Engineer',
       tagline:
-        'Lead Frontend Engineer at Tesla Automation, building robust web platforms and open-source tools with Angular, .NET, and the cloud.',
+        'Lead Frontend Engineer at Tesla, building robust web platforms and open-source tools with Angular, .NET, and the cloud.',
       location: 'Hamburg, Germany',
     },
     sections: {
@@ -246,10 +248,10 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer · Lead Frontend Developer',
             period: 'Sep 2022 - Aug 2024',
             bullets: [
-              'Led frontend development and owned the architecture in client projects',
-              'Built cloud-based full-stack applications (Angular, C#/.NET) on AWS and Azure for clients',
-              'Set up CI/CD pipelines and automated deployments',
-              'Technical lead and project management for a development team',
+              'Technical lead and technical project management (TPM) for a development team in client projects: team coordination, client meetings and project alignment',
+              'Lead frontend development with Angular and React; architecture design and alignment; code reviews',
+              'Serverless architectures on AWS with Terraform (Infrastructure as Code); backend with C#/.NET and Node.js',
+              'Mentored junior developers; onboarded and trained new team members',
             ],
           },
         ],
@@ -271,15 +273,15 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         company: 'ETA+ GmbH',
-        location: 'Hamburg, Germany',
+        location: 'Hamburg, Germany (from Jan 2022 FESforward GmbH, part of ETA+)',
         roles: [
           {
             title: 'Full Stack Developer',
             period: 'Sep 2020 - Aug 2022',
             bullets: [
-              'Built responsive web applications with Angular, TypeScript and Node.js',
-              'Developed backend services and REST APIs with C#/.NET, Entity Framework and MS SQL Server',
-              'Mentored employees and implemented automated deployment pipelines',
+              'Energy monitoring platform (smart building) and custom software for business clients: Angular, .NET 5/6, EF Core, MS SQL Server, SignalR',
+              'Automated deployment processes and pipelines with GitLab CI/CD; cloud services on Azure and AWS',
+              'Client meetings and project alignment; onboarded new team members in frontend and backend',
             ],
           },
         ],
@@ -394,6 +396,7 @@ export const data: Record<Lang, SiteData> = {
     },
     ui: {
       downloadCv: 'Lebenslauf herunterladen',
+      cvUrl: '/tareq-jami-cv-de.pdf',
       langToggle: 'EN',
       langToggleAria: 'Zu Englisch wechseln',
       themeToggleAria: 'Helles/dunkles Design umschalten',
@@ -413,7 +416,7 @@ export const data: Record<Lang, SiteData> = {
       name: NAME,
       role: 'Fullstack Software Engineer',
       tagline:
-        'Lead Frontend Engineer bei Tesla Automation – ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
+        'Lead Frontend Engineer bei Tesla – ich baue robuste Web-Plattformen und Open-Source-Tools mit Angular, .NET und der Cloud.',
       location: 'Hamburg, Deutschland',
     },
     sections: {
@@ -465,10 +468,10 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer · Lead Frontend Developer',
             period: 'Sept. 2022 - Aug. 2024',
             bullets: [
-              'Leitung der Frontend-Entwicklung und Architekturverantwortung in Kundenprojekten',
-              'Cloudbasierte Fullstack-Anwendungen (Angular, C#/.NET) auf AWS und Azure für Kunden entwickelt',
-              'Aufbau von CI/CD-Pipelines und Automatisierung der Deployments',
-              'Technical Lead und Projektleitung für ein Entwicklungsteam',
+              'Technical Lead und technisches Projektmanagement (TPM) für ein Entwicklungsteam in Kundenprojekten: Teamkoordination, Kundengespräche und Projektabstimmungen',
+              'Lead-Frontend-Entwicklung mit Angular und React; Architekturdesign und -abstimmung; Code Reviews',
+              'Serverless-Architekturen auf AWS mit Terraform (Infrastructure as Code); Backend mit C#/.NET und Node.js',
+              'Mentoring von Junior-Entwicklern; Onboarding und Schulung neuer Mitarbeitender',
             ],
           },
         ],
@@ -490,15 +493,15 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         company: 'ETA+ GmbH',
-        location: 'Hamburg, Deutschland',
+        location: 'Hamburg, Deutschland (ab Jan. 2022 FESforward GmbH, Teil der ETA+)',
         roles: [
           {
             title: 'Full Stack Developer',
             period: 'Sept. 2020 - Aug. 2022',
             bullets: [
-              'Entwicklung responsiver Webanwendungen mit Angular, TypeScript und Node.js',
-              'Entwicklung von Backend-Services und REST-APIs mit C#/.NET, Entity Framework und MS SQL Server',
-              'Mentoring von Mitarbeitenden und Implementierung automatisierter Deployment-Pipelines',
+              'Energie-Monitoring-Plattform (Smart Building) und Individualsoftware für Geschäftskunden: Angular, .NET 5/6, EF Core, MS SQL Server, SignalR',
+              'Deployment-Prozesse und Pipelines mit GitLab CI/CD automatisiert; Cloud-Services auf Azure und AWS',
+              'Kundengespräche und Projektabstimmungen; Einarbeitung neuer Mitarbeitender in Frontend und Backend',
             ],
           },
         ],
@@ -636,7 +639,7 @@ export function renderHero(d: SiteData): string {
         <p class="hero-tagline" data-animate="hero">${esc(d.hero.tagline)}</p>
         <div class="hero-actions" data-animate="hero">
           <a class="btn btn-primary" data-magnetic href="#contact">${esc(d.nav.contact)}</a>
-          <a class="btn btn-ghost" data-magnetic href="/tareq-jami-cv.pdf" download>${esc(d.ui.downloadCv)}</a>
+          <a class="btn btn-ghost" data-magnetic href="${esc(d.ui.cvUrl)}" download>${esc(d.ui.downloadCv)}</a>
         </div>
       </div>
       <div class="hero-visual" data-animate="hero">
@@ -792,7 +795,7 @@ export function renderEducation(d: SiteData): string {
         </article>`;
     })
     .join('');
-  return `<h2 class="section-title" data-animate="title">${esc(d.sections.education)}</h2>${items}`;
+  return `<h2 class="section-title" data-animate="title">${esc(d.sections.education)}</h2><div class="cards">${items}</div>`;
 }
 
 export function renderSocials(): string {

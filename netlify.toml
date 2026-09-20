@@ -61,3 +61,10 @@
   from = "/talks/strong-types"
   to = "https://www.youtube.com/watch?v=xdvYpp-MZf4"
   status = 302
+
+# The CV used to live at /tareq-jami-cv.pdf; it is now built per language
+# (npm run cv). Keep the old link working for anyone who bookmarked it.
+[[redirects]]
+  from = "/tareq-jami-cv.pdf"
+  to = "/tareq-jami-cv-en.pdf"
+  status = 301

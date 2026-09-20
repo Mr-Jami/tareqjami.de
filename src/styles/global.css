@@ -591,6 +591,11 @@ html[data-theme='light'] .btn-primary:hover {
 }
 
 /* ---------- Open source feature panel ---------- */
+/* Stacks the section panels (open source, talks, education) with breathing room. */
+.cards {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
 .os-card {
   position: relative;
   background: var(--bg-card);
