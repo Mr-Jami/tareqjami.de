@@ -59,6 +59,10 @@ interface SkillGroup {
   label: string;
   items: string[];
 }
+interface Service {
+  name: string;
+  desc: string;
+}
 interface LanguageSkill {
   name: string;
   level?: string;
@@ -78,6 +82,7 @@ interface SiteData {
   };
   nav: {
     about: string;
+    freelance: string;
     experience: string;
     opensource: string;
     talks: string;
@@ -88,6 +93,7 @@ interface SiteData {
   hero: { name: string; role: string; tagline: string; location: string };
   sections: {
     about: string;
+    freelance: string;
     experience: string;
     opensource: string;
     talks: string;
@@ -97,6 +103,15 @@ interface SiteData {
     contact: string;
   };
   about: string[];
+  // Freelance & consulting: the visible pitch for client work, which runs
+  // through Jami IT (jami-it.de). Mirrors the services listed there.
+  freelance: {
+    intro: string;
+    services: Service[];
+    stack: string[];
+    cta: string; // → contact form
+    more: string; // → jami-it.de
+  };
   experience: Job[];
   opensource: Project[];
   talks: Talk[];
@@ -202,6 +217,7 @@ export const data: Record<Lang, SiteData> = {
     },
     nav: {
       about: 'About',
+      freelance: 'Freelance',
       experience: 'Experience',
       opensource: 'Open Source',
       talks: 'Talks',
@@ -218,6 +234,7 @@ export const data: Record<Lang, SiteData> = {
     },
     sections: {
       about: 'About',
+      freelance: 'Freelance & Consulting',
       experience: 'Experience',
       opensource: 'Open Source',
       talks: 'Talks',
@@ -230,6 +247,31 @@ export const data: Record<Lang, SiteData> = {
       'Fullstack Software Engineer with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET. Currently Lead Frontend Engineer at Tesla, responsible for the architecture and technical direction of internal tooling projects.',
       'Focus on RESTful APIs, relational data modelling, CI/CD and cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator and maintainer of the open-source library ng-openapi with 10,000+ npm downloads per month. Quality-minded through code reviews, automated testing and mentoring; regularly gives training sessions and talks for developers.',
     ],
+    freelance: {
+      intro:
+        'Through my practice Jami IT I work with companies as a freelance software engineer and consultant: Angular and .NET development, software architecture and code reviews, process automation and AI integration, and hands-on AI training for teams. Based in Hamburg, on site or remote.',
+      services: [
+        {
+          name: 'Software consulting & development',
+          desc: 'Custom applications with Angular and .NET, from the first sketch to production — or an honest assessment of what you already have.',
+        },
+        {
+          name: 'Automation & AI integration',
+          desc: 'Automate recurring workflows and put AI where it actually saves time in the daily work, with a clear answer on what happens to your data.',
+        },
+        {
+          name: 'AI training for teams',
+          desc: 'Working with AI on your real tasks instead of a talk about AI — for developers and non-technical teams alike.',
+        },
+        {
+          name: 'Claude Skills & MCP development',
+          desc: 'Skills that teach an AI your processes for good, and MCP servers that connect it to your own systems.',
+        },
+      ],
+      stack: ['Angular', 'TypeScript', 'C# .NET', 'REST / OpenAPI', 'Azure', 'Claude Code', 'MCP'],
+      cta: 'Discuss a project',
+      more: 'More at jami-it.de',
+    },
     experience: [
       {
         company: 'Tesla Automation',
@@ -423,6 +465,7 @@ export const data: Record<Lang, SiteData> = {
     },
     nav: {
       about: 'Über mich',
+      freelance: 'Freelance',
       experience: 'Berufserfahrung',
       opensource: 'Open Source',
       talks: 'Vorträge',
@@ -439,6 +482,7 @@ export const data: Record<Lang, SiteData> = {
     },
     sections: {
       about: 'Über mich',
+      freelance: 'Freelance & Beratung',
       experience: 'Berufserfahrung',
       opensource: 'Open Source',
       talks: 'Vorträge',
@@ -451,6 +495,31 @@ export const data: Record<Lang, SiteData> = {
       'Fullstack Software Engineer mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET. Aktuell Lead Frontend Engineer bei Tesla, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte.',
       'Schwerpunkte: RESTful APIs, relationale Datenmodellierung, CI/CD und Cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator und Maintainer der Open-Source-Bibliothek ng-openapi mit über 10.000 npm-Downloads pro Monat. Qualitätsbewusst durch Code Reviews, automatisiertes Testing und Mentoring; regelmäßig Schulungen und Vorträge für Entwicklerinnen und Entwickler.',
     ],
+    freelance: {
+      intro:
+        'Über meine Praxis Jami IT arbeite ich als freiberuflicher Softwareentwickler und Berater mit Unternehmen zusammen: Angular- und .NET-Entwicklung, Softwarearchitektur und Code-Reviews, Prozessautomatisierung und KI-Integration sowie praxisnahe KI-Trainings für Teams. Aus Hamburg, vor Ort oder remote.',
+      services: [
+        {
+          name: 'Software-Beratung & Entwicklung',
+          desc: 'Individuelle Anwendungen mit Angular und .NET, von der ersten Skizze bis zum laufenden Betrieb – oder eine ehrliche Einschätzung zu dem, was ihr schon habt.',
+        },
+        {
+          name: 'Automatisierung & KI-Integration',
+          desc: 'Wiederkehrende Abläufe automatisieren und KI dort einsetzen, wo sie im Alltag wirklich Zeit spart – mit klarer Antwort darauf, was mit euren Daten passiert.',
+        },
+        {
+          name: 'KI-Trainings für Teams',
+          desc: 'Arbeiten mit KI an euren echten Aufgaben statt Vortrag über KI – für Entwickler:innen und Fachabteilungen.',
+        },
+        {
+          name: 'Claude-Skills & MCP-Entwicklung',
+          desc: 'Skills, die einer KI eure Abläufe dauerhaft beibringen, und MCP-Server, die sie an eure Systeme anbinden.',
+        },
+      ],
+      stack: ['Angular', 'TypeScript', 'C# .NET', 'REST / OpenAPI', 'Azure', 'Claude Code', 'MCP'],
+      cta: 'Projekt besprechen',
+      more: 'Mehr auf jami-it.de',
+    },
     experience: [
       {
         company: 'Tesla Automation',
@@ -686,6 +755,31 @@ export function renderAbout(d: SiteData): string {
   return `<h2 class="section-title" data-animate="title">${esc(d.sections.about)}</h2><div class="prose about-prose" data-animate="rise">${paras}</div>`;
 }
 
+export function renderFreelance(d: SiteData): string {
+  const f = d.freelance;
+  const services = f.services
+    .map(
+      (s) => `
+        <li class="service">
+          <h3 class="service-name">${esc(s.name)}</h3>
+          <p class="service-desc">${esc(s.desc)}</p>
+        </li>`,
+    )
+    .join('');
+  const chips = f.stack.map((i) => `<li class="chip">${esc(i)}</li>`).join('');
+  return `
+    <h2 class="section-title" data-animate="title">${esc(d.sections.freelance)}</h2>
+    <article class="os-card freelance" data-animate="rise" data-tilt>
+      <p class="lead">${esc(f.intro)}</p>
+      <ul class="services">${services}</ul>
+      <ul class="chips" data-stagger>${chips}</ul>
+      <div class="freelance-actions">
+        <a class="btn btn-primary" data-magnetic href="#contact">${esc(f.cta)}</a>
+        <a class="btn btn-ghost" data-magnetic href="https://jami-it.de" rel="noopener">${esc(f.more)} <span class="ext">↗</span></a>
+      </div>
+    </article>`;
+}
+
 export function renderExperience(d: SiteData): string {
   const items = d.experience
     .map((job) => {
@@ -883,6 +977,7 @@ export function renderContact(lang: Lang): string {
 export function renderNav(d: SiteData): string {
   const links: [string, string][] = [
     ['about', d.nav.about],
+    ['freelance', d.nav.freelance],
     ['experience', d.nav.experience],
     ['opensource', d.nav.opensource],
     ['talks', d.nav.talks],
@@ -900,6 +995,7 @@ export function renderAll(lang: Lang): Record<string, string> {
     nav: renderNav(d),
     hero: renderHero(d),
     about: renderAbout(d),
+    freelance: renderFreelance(d),
     experience: renderExperience(d),
     opensource: renderOpenSource(d),
     talks: renderTalks(d),
