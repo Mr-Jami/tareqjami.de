@@ -172,7 +172,7 @@ export const data: Record<Lang, SiteData> = {
     meta: {
       title: 'Tareq Jami · Software Engineer',
       description:
-        'Tareq Jami, Fullstack Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla Automation, Angular and .NET developer, and open-source maintainer of ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer based in Hamburg. Lead Frontend Engineer at Tesla, Angular and .NET developer, and open-source maintainer of ng-openapi.',
     },
     ui: {
       downloadCv: 'Download CV',
@@ -233,7 +233,7 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer',
             period: 'Sep 2024 - Feb 2026',
             bullets: [
-              'Led an internal digitalization project that is used internationally across Tesla Automation',
+              'Led an internal digitalization project that is used internationally across Tesla',
               'Developed full-stack solutions (Angular/TypeScript, C#/.NET, REST APIs) and made the key architectural decisions for frontend and backend',
               'Requirements analysis and close coordination with stakeholders and end users at international sites',
             ],
@@ -392,7 +392,7 @@ export const data: Record<Lang, SiteData> = {
     meta: {
       title: 'Tareq Jami · Softwareentwickler',
       description:
-        'Tareq Jami, Fullstack Software Engineer aus Hamburg. Lead Frontend Engineer bei Tesla Automation, Angular- und .NET-Entwickler und Open-Source-Maintainer von ng-openapi.',
+        'Tareq Jami, Fullstack Software Engineer aus Hamburg. Lead Frontend Engineer bei Tesla, Angular- und .NET-Entwickler und Open-Source-Maintainer von ng-openapi.',
     },
     ui: {
       downloadCv: 'Lebenslauf herunterladen',
@@ -453,7 +453,7 @@ export const data: Record<Lang, SiteData> = {
             title: 'Software Engineer',
             period: 'Sept. 2024 - Feb. 2026',
             bullets: [
-              'Leitung eines internen Digitalisierungsprojekts mit internationalem Einsatz bei Tesla Automation',
+              'Leitung eines internen Digitalisierungsprojekts mit internationalem Einsatz bei Tesla',
               'Entwicklung von Fullstack-Lösungen (Angular/TypeScript, C#/.NET, REST-APIs) mit Verantwortung für die wesentlichen Architekturentscheidungen in Frontend und Backend',
               'Anforderungsanalyse und enge Abstimmung mit Stakeholdern und Endnutzern an internationalen Standorten',
             ],
