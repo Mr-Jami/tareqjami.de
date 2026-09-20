@@ -210,7 +210,7 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Contact',
     },
     about: [
-      'Fullstack Software Engineer with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET. Currently Lead Frontend Engineer at Tesla Automation, responsible for the architecture and technical direction of internal tooling projects.',
+      'Fullstack Software Engineer with six years of experience building scalable web applications with Angular/TypeScript and C#/.NET. Currently Lead Frontend Engineer at Tesla, responsible for the architecture and technical direction of internal tooling projects.',
       'Focus on RESTful APIs, relational data modelling, CI/CD and cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator and maintainer of the open-source library ng-openapi with 10,000+ npm downloads per month. Quality-minded through code reviews, automated testing and mentoring; regularly gives training sessions and talks for developers.',
     ],
     experience: [
@@ -430,7 +430,7 @@ export const data: Record<Lang, SiteData> = {
       contact: 'Kontakt',
     },
     about: [
-      'Fullstack Software Engineer mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET. Aktuell Lead Frontend Engineer bei Tesla Automation, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte.',
+      'Fullstack Software Engineer mit sechs Jahren Erfahrung in der Entwicklung skalierbarer Webanwendungen mit Angular/TypeScript und C#/.NET. Aktuell Lead Frontend Engineer bei Tesla, verantwortlich für Architektur und technische Ausrichtung interner Tooling-Projekte.',
       'Schwerpunkte: RESTful APIs, relationale Datenmodellierung, CI/CD und Cloud (Azure, AWS, Docker, Kubernetes, Terraform). Creator und Maintainer der Open-Source-Bibliothek ng-openapi mit über 10.000 npm-Downloads pro Monat. Qualitätsbewusst durch Code Reviews, automatisiertes Testing und Mentoring; regelmäßig Schulungen und Vorträge für Entwicklerinnen und Entwickler.',
     ],
     experience: [
