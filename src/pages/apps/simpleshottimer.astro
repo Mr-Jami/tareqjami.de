@@ -1,22 +1,17 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Smart app landing page for "Simple Shot Timer".
-//  - Android  → redirect straight to the Google Play listing.
-//  - iOS      → would redirect to a dedicated page, but that page does not
-//               exist yet, so the redirect is disabled (see IOS_URL below).
-//  - Anything else (desktop, etc.) → show the logo + store buttons.
+// App landing page for "Simple Shot Timer": logo, tagline and store buttons.
+// Deliberately no user-agent redirect to Google Play: Googlebot Smartphone's
+// UA contains "Android", so a page that navigates away before it renders gets
+// indexed as the Play Store listing instead of as this page. The Play badge
+// is the primary CTA instead.
 const title = 'Simple Shot Timer';
 const description =
   'Simple Shot Timer — a focused interval / shot timer app. Get it on Google Play.';
 
-// Single source of truth for the store links, shared by the inline redirect
-// script and the visible buttons below.
 const PLAY_URL =
   'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
-// Set this once the iOS landing page exists, then flip APP_STORE_ENABLED.
-const APP_STORE_URL = '';
-const APP_STORE_ENABLED = false;
 ---
 
 <Base
@@ -30,32 +25,6 @@ const APP_STORE_ENABLED = false;
   </nav>
 
   <main id="main">
-    {/*
-      Runs synchronously while the document is parsed, so mobile visitors are
-      redirected before the fallback below ever paints. Kept inline (no module
-      import) precisely so it executes during parse, not after hydration.
-    */}
-    <script is:inline define:vars={{ PLAY_URL, APP_STORE_URL, APP_STORE_ENABLED }}>
-      (function () {
-        var ua = navigator.userAgent || '';
-        // Android → Google Play.
-        if (/android/i.test(ua)) {
-          location.replace(PLAY_URL);
-          return;
-        }
-        // iOS → dedicated page (disabled until it exists).
-        var isIOS =
-          /iPad|iPhone|iPod/.test(ua) ||
-          // iPadOS 13+ reports as desktop Safari but exposes touch points.
-          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        if (APP_STORE_ENABLED && APP_STORE_URL && isIOS) {
-          location.replace(APP_STORE_URL);
-          return;
-        }
-        // Everything else: fall through and render the page.
-      })();
-    </script>
-
     <section class="app-landing">
       <div class="app-icon" aria-hidden="true">
         <img src="/apps/simpleshottimer/icon.png" alt="" width="120" height="120" />
