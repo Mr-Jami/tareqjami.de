@@ -22,3 +22,6 @@ dist/
 # Local logs / Claude local settings
 *.log
 .claude/settings.local.json
+
+# SEO audit output (claude-seo), kept locally
+tareqjami.de-audit/
