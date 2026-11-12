@@ -62,6 +62,30 @@
   to = "https://www.youtube.com/watch?v=xdvYpp-MZf4"
   status = 302
 
+# The Simple Shot Timer landing page moved to its own domain. Old links
+# (Play Store listing, search results, bookmarks) forward there, in both
+# languages. The bare path covers the trailing-slash form too; the splat rule
+# catches the old icon and badge images.
+[[redirects]]
+  from = "/apps/simpleshottimer"
+  to = "https://simpleshottimer.com"
+  status = 301
+
+[[redirects]]
+  from = "/apps/simpleshottimer/*"
+  to = "https://simpleshottimer.com"
+  status = 301
+
+[[redirects]]
+  from = "/de/apps/simpleshottimer"
+  to = "https://simpleshottimer.com"
+  status = 301
+
+[[redirects]]
+  from = "/de/apps/simpleshottimer/*"
+  to = "https://simpleshottimer.com"
+  status = 301
+
 # The CV used to live at /tareq-jami-cv.pdf; it is now built per language
 # (npm run cv). Keep the old link working for anyone who bookmarked it.
 [[redirects]]

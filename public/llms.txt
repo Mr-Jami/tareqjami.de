@@ -36,8 +36,8 @@ the freelance practice and https://tareqjami.de for the personal profile.
 - [ng-openapi](https://ng-openapi.dev): Angular-first OpenAPI client generator.
   Creator and maintainer since July 2025. Docs at https://ng-openapi.dev,
   source at https://github.com/ng-openapi/ng-openapi.
-- [Simple Shot Timer](https://tareqjami.de/apps/simpleshottimer/): Flutter shot
-  timer app for sport shooters (German: https://tareqjami.de/de/apps/simpleshottimer/).
+- [Simple Shot Timer](https://simpleshottimer.com): Flutter shot timer app for
+  sport shooters.
 
 ## Talks
 

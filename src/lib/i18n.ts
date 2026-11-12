@@ -32,7 +32,7 @@ interface Job {
 interface Project {
   name: string;
   url: string;
-  repo?: string; // source repository → SoftwareSourceCode schema (apps have their own page)
+  repo?: string; // source repository → SoftwareSourceCode schema (apps have their own site)
   language?: string; // main programming language, for the same schema
   role: string;
   period: string;
@@ -371,7 +371,7 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         name: 'Simple Shot Timer',
-        url: '/apps/simpleshottimer/',
+        url: 'https://simpleshottimer.com',
         role: 'Flutter app · Google Play',
         period: 'May 2026 - Present',
         bullets: [
@@ -621,7 +621,7 @@ export const data: Record<Lang, SiteData> = {
       },
       {
         name: 'Simple Shot Timer',
-        url: '/apps/simpleshottimer/',
+        url: 'https://simpleshottimer.com',
         role: 'Flutter-App · Google Play',
         period: 'Mai 2026 - heute',
         bullets: [

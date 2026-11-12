@@ -13,7 +13,6 @@ const PAGE_SOURCES: Record<string, string[]> = {
   '/': ['src/lib/i18n.ts', 'src/pages/[...lang]/index.astro'],
   '/impressum/': ['src/pages/[...lang]/impressum.astro'],
   '/datenschutz/': ['src/pages/[...lang]/datenschutz.astro'],
-  '/apps/simpleshottimer/': ['src/pages/[...lang]/apps/simpleshottimer.astro'],
   '/tareq-jami-cv-en.pdf': ['public/tareq-jami-cv-en.pdf'],
   '/tareq-jami-cv-de.pdf': ['public/tareq-jami-cv-de.pdf'],
 };

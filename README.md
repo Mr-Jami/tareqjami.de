@@ -27,7 +27,7 @@ npm run preview  # preview the production build
 │   ├── lib/i18n.ts         # bilingual content + render helpers
 │   ├── lib/routes.ts       # getStaticPaths: one build per language
 │   ├── styles/global.css   # styles (theme tokens, layout)
-│   └── pages/[...lang]/    # index, impressum, datenschutz, success, apps/simpleshottimer
+│   └── pages/[...lang]/    # index, impressum, datenschutz, success
 ├── astro.config.mjs
 ├── netlify.toml            # Netlify build config
 └── package.json
